@@ -1,6 +1,6 @@
 {
-  "name": "@rubensflinco/json-server-plus",
-  "version": "1.0.2",
+  "name": "json-server-mock-plus",
+  "version": "1.0.3",
   "description": "Uma biblioteca CLI para criar servidores REST a partir de arquivos JSON",
   "license": "MIT",
   "author": {
@@ -11,7 +11,7 @@
   "type": "module",
   "main": "./cli.js",
   "bin": {
-    "json-server-plus": "./cli.js"
+    "json-server-mock-plus": "./cli.js"
   },
   "files": [
     "dist/**/*"
@@ -26,12 +26,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/rubensflinco/json-server-plus.git"
+    "url": "https://github.com/rubensflinco/json-server-mock-plus.git"
   },
   "bugs": {
-    "url": "https://github.com/rubensflinco/json-server-plus/issues"
+    "url": "https://github.com/rubensflinco/json-server-mock-plus/issues"
   },
-  "homepage": "https://github.com/rubensflinco/json-server-plus#readme",
+  "homepage": "https://github.com/rubensflinco/json-server-mock-plus#readme",
   "scripts": {
     "build": "node scripts/build.js",
     "start": "nodemon",

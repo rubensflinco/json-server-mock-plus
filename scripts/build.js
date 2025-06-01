@@ -68,7 +68,7 @@ try {
     ...packageJson,
     main: 'cli.js',
     bin: {
-      "json-server-plus": "./cli.js"
+      "json-server-mock-plus": "./cli.js"
     },
     scripts: {
       start: "node cli.js"

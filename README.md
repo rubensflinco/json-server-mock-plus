@@ -1,4 +1,4 @@
-# JSON Server Plus
+# JSON Server Mock Plus
 
 Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON.
 
@@ -6,10 +6,10 @@ Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON.
 
 ```bash
 # Instalação global
-npm install -g json-server-plus
+npm install -g json-server-mock-plus
 
 # Ou use diretamente com npx
-npx json-server-plus
+npx --yes json-server-mock-plus
 ```
 
 ## Uso
@@ -71,10 +71,10 @@ npx json-server-plus
 
 ```bash
 # Usando a instalação global
-json-server-plus -f db.json
+json-server-mock-plus -f db.json
 
 # Ou usando npx
-npx json-server-plus -f db.json
+npx --yes json-server-mock-plus -f db.json
 ```
 
 Por padrão, o servidor será iniciado em `http://localhost:3000`.
@@ -89,16 +89,16 @@ Por padrão, o servidor será iniciado em `http://localhost:3000`.
 
 ```bash
 # Iniciar na porta 8080
-npx json-server-plus -f db.json -p 8080
+npx json-server-mock-plus -f db.json -p 8080
 
 # Iniciar em um host específico
-npx json-server-plus -f db.json -h 0.0.0.0
+npx json-server-mock-plus -f db.json -h 0.0.0.0
 
 # Usando um arquivo JSON remoto
-npx json-server-plus -f https://raw.githubusercontent.com/seu-usuario/seu-repo/main/db.json
+npx json-server-mock-plus -f https://raw.githubusercontent.com/seu-usuario/seu-repo/main/db.json
 
 # Usando um arquivo JSON local com caminho relativo
-npx json-server-plus -f ./data/db.json
+npx json-server-mock-plus -f ./data/db.json
 ```
 
 ## Endpoints
