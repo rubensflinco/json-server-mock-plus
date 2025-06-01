@@ -1,6 +1,6 @@
 {
-  "name": "json-server-plus",
-  "version": "1.0.1",
+  "name": "@rubensflinco/json-server-plus",
+  "version": "1.0.2",
   "description": "Uma biblioteca CLI para criar servidores REST a partir de arquivos JSON",
   "license": "MIT",
   "author": {

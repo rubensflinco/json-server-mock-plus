@@ -21,7 +21,7 @@ jobs:
           node-version: 24.1.0
           registry-url: https://registry.npmjs.org/
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
           
       - name: 📋 Instalar dependências
         run: npm install --dev
@@ -30,4 +30,6 @@ jobs:
         run: npm run build
         
       - name: 🚀 Publicar no NPM
-        run: npm publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
