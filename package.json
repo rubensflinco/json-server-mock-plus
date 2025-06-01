@@ -1,0 +1,63 @@
+{
+  "name": "json-server-plus",
+  "version": "1.0.0",
+  "description": "Uma biblioteca CLI para criar servidores REST a partir de arquivos JSON",
+  "license": "MIT",
+  "author": {
+    "name": "Rubens Flinco",
+    "email": "contato@rubensflinco.com.br",
+    "url": "https://rubensflinco.com.br"
+  },
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "json-server-plus": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "keywords": [
+    "json-server",
+    "rest-api",
+    "mock-server",
+    "cli",
+    "express",
+    "json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seu-usuario/json-server-plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/json-server-plus/issues"
+  },
+  "homepage": "https://github.com/seu-usuario/json-server-plus#readme",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "start": "nodemon",
+    "dev": "ts-node src/cli.ts",
+    "test": "jest",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.0",
+    "glob": "^11.0.2",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.3",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

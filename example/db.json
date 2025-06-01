@@ -1,0 +1,74 @@
+{
+  "endpoints": {
+    "users": {
+      "GET": {
+        "data": [
+          { "id": 1, "name": "João Silva", "email": "joao@email.com" },
+          { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
+        ]
+      },
+      "POST": {
+        "data": [
+          { "id": 1, "name": "João Silva", "email": "joao@email.com" }
+        ]
+      },
+      "PUT": {
+        "data": [
+          { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com" }
+        ]
+      },
+      "DELETE": {
+        "data": [
+          { "id": 1, "name": "João Silva", "email": "joao@email.com" }
+        ]
+      }
+    },
+    "users/:name": {
+      "GET": {
+        "data": [
+          { "id": 1, "name": "João Silva ID", "email": "joao@email.com" },
+          { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
+        ]
+      }
+    },
+    "products": {
+      "GET": {
+        "data": [
+          { "id": 1, "name": "Notebook", "price": 3500 },
+          { "id": 2, "name": "Smartphone", "price": 2000 }
+        ]
+      },
+      "POST": {
+        "data": [
+          { "id": 1, "name": "Notebook", "price": 3500 }
+        ]
+      }
+    },
+    "categories": {
+      "GET": {
+        "data": [
+          { "id": 1, "name": "Eletrônicos" },
+          { "id": 2, "name": "Informática" }
+        ]
+      }
+    },
+    "teste": {
+      "GET": {
+        "data": {
+          "id": 1,
+          "name": "Teste",
+          "email": "teste@email.com"
+        }
+      }
+    },
+    "teste/alo": {
+      "GET": {
+        "data": {
+          "id": 1,
+          "name": "Teste Alo",
+          "email": "teste@email.com"
+        }
+      }
+    }
+  }
+} 
