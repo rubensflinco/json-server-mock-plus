@@ -1,6 +1,6 @@
 {
   "name": "json-server-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Uma biblioteca CLI para criar servidores REST a partir de arquivos JSON",
   "license": "MIT",
   "author": {
@@ -9,9 +9,9 @@
     "url": "https://rubensflinco.com.br"
   },
   "type": "module",
-  "main": "dist/cli.js",
+  "main": "./cli.js",
   "bin": {
-    "json-server-plus": "./dist/cli.js"
+    "json-server-plus": "./cli.js"
   },
   "files": [
     "dist/**/*"
@@ -26,12 +26,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/seu-usuario/json-server-plus.git"
+    "url": "https://github.com/rubensflinco/json-server-plus.git"
   },
   "bugs": {
-    "url": "https://github.com/seu-usuario/json-server-plus/issues"
+    "url": "https://github.com/rubensflinco/json-server-plus/issues"
   },
-  "homepage": "https://github.com/seu-usuario/json-server-plus#readme",
+  "homepage": "https://github.com/rubensflinco/json-server-plus#readme",
   "scripts": {
     "build": "node scripts/build.js",
     "start": "nodemon",
