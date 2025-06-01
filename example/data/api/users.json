@@ -2,30 +2,39 @@
   "endpoints": {
     "users": {
       "GET": {
-        "data": [
+        "body": [
           { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" },
           { "id": 2, "name": "Maria Santos", "email": "maria@email.com", "age": 25, "city": "Rio de Janeiro" },
           { "id": 3, "name": "Pedro Costa", "email": "pedro@email.com", "age": 35, "city": "Belo Horizonte" }
         ]
       },
       "POST": {
-        "data": { "id": 4, "name": "Novo Usuário", "email": "novo@email.com", "age": 28, "city": "Salvador" }
+        "body": { "id": 4, "name": "Novo Usuário", "email": "novo@email.com", "age": 28, "city": "Salvador" }
+      },
+      "PUT": {
+        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" }
+      },
+      "PATCH": {
+        "body": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31, "city": "São Paulo" }
+      },
+      "DELETE": {
+        "body": { "message": "Usuário removido com sucesso" }
       }
     },
     "users/:id": {
       "GET": {
-        "data": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" }
+        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" }
       },
       "PUT": {
-        "data": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31, "city": "São Paulo" }
+        "body": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31, "city": "São Paulo" }
       },
       "DELETE": {
-        "data": { "message": "Usuário removido com sucesso" }
+        "body": { "message": "Usuário removido com sucesso" }
       }
     },
     "users/:userId/posts": {
       "GET": {
-        "data": [
+        "body": [
           { "id": 1, "userId": 1, "title": "Primeiro Post", "content": "Conteúdo do primeiro post", "createdAt": "2024-01-01" },
           { "id": 2, "userId": 1, "title": "Segundo Post", "content": "Conteúdo do segundo post", "createdAt": "2024-01-02" }
         ]
@@ -33,10 +42,10 @@
     },
     "users/:userId/posts/:postId": {
       "GET": {
-        "data": { "id": 1, "userId": 1, "title": "Primeiro Post", "content": "Conteúdo do primeiro post", "createdAt": "2024-01-01" }
+        "body": { "id": 1, "userId": 1, "title": "Primeiro Post", "content": "Conteúdo do primeiro post", "createdAt": "2024-01-01" }
       },
       "PUT": {
-        "data": { "id": 1, "userId": 1, "title": "Post Atualizado", "content": "Conteúdo atualizado", "updatedAt": "2024-01-03" }
+        "body": { "id": 1, "userId": 1, "title": "Post Atualizado", "content": "Conteúdo atualizado", "updatedAt": "2024-01-03" }
       }
     }
   }

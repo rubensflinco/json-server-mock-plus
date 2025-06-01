@@ -10,7 +10,7 @@ const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.me
 
 interface EndpointConfig {
   [method: string]: {
-    data: any;
+    body: any;
   };
 }
 
@@ -107,7 +107,7 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
     }
 
     for (const [method, config] of Object.entries(methods)) {
-      const { data } = config;
+      const { body } = config;
       const methodLower = method.toLowerCase();
 
       // Configurar a documentação do endpoint
@@ -117,10 +117,14 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
         description: `Endpoint ${method} para ${endpoint}. Retorna dados mockados baseados no arquivo JSON.`,
         responses: {
           200: {
-            description: 'Sucesso',
+            description: 'Successful response',
             content: {
               'application/json': {
-                schema: generateInlineSchema(data) // Schema inline
+                schema: Array.isArray(body) ? {
+                  type: 'array',
+                  items: generateInlineSchema(body[0] || {}),
+                  example: body
+                } : generateInlineSchema(body || {})
               }
             }
           },
@@ -148,7 +152,7 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
               schema: {
                 type: 'object',
                 additionalProperties: true,
-                example: Array.isArray(data) && data.length > 0 ? data[0] : data
+                example: Array.isArray(body) && body.length > 0 ? body[0] : body
               }
             }
           }
@@ -250,14 +254,14 @@ function loadJsonFilesFromDirectory(directoryPath: string): { endpoints: Record<
             // Criar endpoint com os dados do arquivo
             combinedEndpoints[endpointName] = {
               GET: {
-                data: jsonContent
+                body: jsonContent
               }
             };
             
             endpointsInfo[endpointName] = {
               config: {
                 GET: {
-                  data: jsonContent
+                  body: jsonContent
                 }
               },
               source: folderName
@@ -298,7 +302,7 @@ export async function startServer(
     const fileName = inputPath.split(/[\/\\]/).pop()?.replace(/\.json$/, '') || 'arquivo';
     
     jsonData = {
-      endpoints: fileContent.endpoints || { [fileName]: { GET: { data: fileContent } } },
+      endpoints: fileContent.endpoints || { [fileName]: { GET: { body: fileContent } } },
       endpointsInfo: {}
     };
     
@@ -351,55 +355,55 @@ export async function startServer(
     const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
     
     // Configura os métodos HTTP para cada endpoint
-    for (const [method, config] of Object.entries(methods as Record<string, { data: any }>)) {
-      const { data } = config;
+    for (const [method, config] of Object.entries(methods as Record<string, { body: any }>)) {
+      const { body } = config;
 
       switch (method.toUpperCase()) {
         case 'GET':
           app.get(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
 
         case 'POST':
           app.post(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
 
         case 'PUT':
           app.put(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
 
         case 'DELETE':
           app.delete(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
            
         case 'PATCH':
           app.patch(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
            
         case 'OPTIONS':
           app.options(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
            
         case 'HEAD':
           app.head(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
    
         case 'ALL':
           app.all(path, (req, res) => {
-            res.json(data);
+            res.json(body);
           });
           break;
       }

@@ -101,29 +101,29 @@ Para maior controle, use a estrutura completa com múltiplos métodos HTTP:
   "endpoints": {
     "users": {
       "GET": {
-        "data": [
+        "body": [
           { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30 },
           { "id": 2, "name": "Maria Santos", "email": "maria@email.com", "age": 25 }
         ]
       },
       "POST": {
-        "data": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com", "age": 28 }
+        "body": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com", "age": 28 }
       }
     },
     "users/:id": {
       "GET": {
-        "data": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30 }
+        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30 }
       },
       "PUT": {
-        "data": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31 }
+        "body": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31 }
       },
       "DELETE": {
-        "data": { "message": "Usuário removido com sucesso" }
+        "body": { "message": "Usuário removido com sucesso" }
       }
     },
     "users/:userId/posts": {
       "GET": {
-        "data": [
+        "body": [
           { "id": 1, "userId": 1, "title": "Primeiro Post", "content": "Conteúdo do primeiro post" }
         ]
       }
@@ -143,18 +143,18 @@ No Swagger, estes endpoints serão agrupados como "users" e cada parâmetro `:id
   "endpoints": {
     "users": {
       "GET": {
-        "data": [
+        "body": [
           { "id": 1, "name": "João Silva", "email": "joao@email.com" },
           { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
         ]
       },
       "POST": {
-        "data": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com" }
+        "body": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com" }
       }
     },
     "products": {
       "GET": {
-        "data": [
+        "body": [
           { "id": 1, "name": "Notebook", "price": 3500 },
           { "id": 2, "name": "Smartphone", "price": 2000 }
         ]
@@ -162,7 +162,7 @@ No Swagger, estes endpoints serão agrupados como "users" e cada parâmetro `:id
     },
     "users/:id": {
       "GET": {
-        "data": { "id": 1, "name": "João Silva", "email": "joao@email.com" }
+        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com" }
       }
     }
   }
@@ -231,12 +231,12 @@ Você pode criar rotas com parâmetros dinâmicos usando a sintaxe `:parametro`.
   "endpoints": {
     "users/:id": {
       "GET": {
-        "data": { "id": 1, "name": "João", "email": "joao@email.com" }
+        "body": { "id": 1, "name": "João", "email": "joao@email.com" }
       }
     },
     "users/:userId/posts/:postId": {
       "GET": {
-        "data": { "id": 1, "userId": 1, "title": "Post", "content": "Conteúdo" }
+        "body": { "id": 1, "userId": 1, "title": "Post", "content": "Conteúdo" }
       }
     }
   }
@@ -261,14 +261,14 @@ O arquivo JSON deve seguir a seguinte estrutura:
   "endpoints": {
     "nome-do-endpoint": {
       "METODO_HTTP": {
-        "data": {
+        "body": {
           // Seus dados aqui
         }
       }
     },
     "nome-do-endpoint/:parametro": {
       "METODO_HTTP": {
-        "data": {
+        "body": {
           // Dados para endpoints com parâmetros
         }
       }
@@ -284,7 +284,7 @@ No modo pasta, cada arquivo pode ser:
 1. **JSON Simples** (cria endpoint GET automaticamente):
 ```json
 [
-  { "id": 1, "data": "exemplo" }
+  { "id": 1, "body": "exemplo" }
 ]
 ```
 
@@ -293,8 +293,8 @@ No modo pasta, cada arquivo pode ser:
 {
   "endpoints": {
     "endpoint-name": {
-      "GET": { "data": [...] },
-      "POST": { "data": {...} }
+      "GET": { "body": [...] },
+      "POST": { "body": {...} }
     }
   }
 }
