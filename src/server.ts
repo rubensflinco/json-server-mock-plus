@@ -11,6 +11,7 @@ const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.me
 interface EndpointConfig {
   [method: string]: {
     body: any;
+    headers?: Record<string, string>; // Novo campo para headers mockados
   };
 }
 
@@ -107,17 +108,30 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
     }
 
     for (const [method, config] of Object.entries(methods)) {
-      const { body } = config;
+      const { body, headers } = config;
       const methodLower = method.toLowerCase();
 
       // Configurar a documentação do endpoint
       const endpointDoc: any = {
         tags: [source], // Usar o nome da pasta/arquivo como tag
         summary: `${method} ${endpoint}`,
-        description: `Endpoint ${method} para ${endpoint}. Retorna dados mockados baseados no arquivo JSON.`,
+        description: `Endpoint ${method} para ${endpoint}. Retorna dados mockados baseados no arquivo JSON.${headers ? '\n\n**Headers customizados configurados:** ' + Object.keys(headers).join(', ') : ''}`,
         responses: {
           200: {
             description: 'Successful response',
+            // Adicionar headers customizados na documentação se existirem
+            ...(headers && Object.keys(headers).length > 0 && {
+              headers: Object.entries(headers).reduce((acc, [key, value]) => {
+                acc[key] = {
+                  description: `Header customizado: ${key}`,
+                  schema: {
+                    type: 'string',
+                    example: value
+                  }
+                };
+                return acc;
+              }, {} as any)
+            }),
             content: {
               'application/json': {
                 schema: Array.isArray(body) ? {
@@ -254,14 +268,16 @@ function loadJsonFilesFromDirectory(directoryPath: string): { endpoints: Record<
             // Criar endpoint com os dados do arquivo
             combinedEndpoints[endpointName] = {
               GET: {
-                body: jsonContent
+                body: jsonContent,
+                headers: {} // Headers vazios por padrão para arquivos simples
               }
             };
             
             endpointsInfo[endpointName] = {
               config: {
                 GET: {
-                  body: jsonContent
+                  body: jsonContent,
+                  headers: {} // Headers vazios por padrão para arquivos simples
                 }
               },
               source: folderName
@@ -302,7 +318,7 @@ export async function startServer(
     const fileName = inputPath.split(/[\/\\]/).pop()?.replace(/\.json$/, '') || 'arquivo';
     
     jsonData = {
-      endpoints: fileContent.endpoints || { [fileName]: { GET: { body: fileContent } } },
+      endpoints: fileContent.endpoints || { [fileName]: { GET: { body: fileContent, headers: {} } } },
       endpointsInfo: {}
     };
     
@@ -355,55 +371,66 @@ export async function startServer(
     const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
     
     // Configura os métodos HTTP para cada endpoint
-    for (const [method, config] of Object.entries(methods as Record<string, { body: any }>)) {
-      const { body } = config;
+    for (const [method, config] of Object.entries(methods as Record<string, { body: any; headers?: Record<string, string> }>)) {
+      const { body, headers } = config;
+
+      // Função auxiliar para aplicar headers e retornar resposta
+      const sendResponse = (res: express.Response) => {
+        // Aplicar headers customizados se existirem
+        if (headers) {
+          Object.entries(headers).forEach(([key, value]) => {
+            res.header(key, value);
+          });
+        }
+        res.json(body);
+      };
 
       switch (method.toUpperCase()) {
         case 'GET':
           app.get(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
 
         case 'POST':
           app.post(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
 
         case 'PUT':
           app.put(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
 
         case 'DELETE':
           app.delete(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
            
         case 'PATCH':
           app.patch(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
            
         case 'OPTIONS':
           app.options(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
            
         case 'HEAD':
           app.head(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
    
         case 'ALL':
           app.all(path, (req, res) => {
-            res.json(body);
+            sendResponse(res);
           });
           break;
       }

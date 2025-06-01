@@ -5,6 +5,7 @@ Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON 
 ## ✨ Funcionalidades
 
 - 📋 **Documentação Automática Swagger**: Interface interativa para testar e documentar APIs
+- 🔧 **Headers Mockados**: Suporte a headers customizados de resposta para simulações realistas
 - 🔄 **Schemas Inline**: Schemas gerados automaticamente baseados nos dados reais
 - 🚀 **Múltiplos Métodos HTTP**: Suporte a GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
 - 📁 **Modo Pasta ou Arquivo**: Carregamento de múltiplos arquivos JSON ou arquivo único
@@ -247,6 +248,67 @@ No Swagger, você verá:
 - `users/{id}` com parâmetro `id` (integer, obrigatório)
 - `users/{userId}/posts/{postId}` com parâmetros `userId` e `postId` (integer, obrigatório)
 
+### 🔧 Headers Mockados
+
+**NOVO!** Agora você pode definir headers personalizados que serão enviados como cabeçalhos de resposta em seus endpoints. Esta funcionalidade é útil para simular APIs reais que retornam headers específicos.
+
+```json
+{
+  "endpoints": {
+    "users": {
+      "GET": {
+        "body": [
+          { "id": 1, "name": "João Silva", "email": "joao@email.com" },
+          { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
+        ],
+        "headers": {
+          "X-Total-Count": "2",
+          "X-API-Version": "1.0",
+          "Cache-Control": "max-age=3600",
+          "X-Custom-Header": "valor-personalizado"
+        }
+      },
+      "POST": {
+        "body": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com" },
+        "headers": {
+          "X-Created-At": "2024-01-15T10:30:00Z",
+          "Location": "/users/3",
+          "X-Rate-Limit": "100"
+        }
+      }
+    },
+    "products/:id": {
+      "GET": {
+        "body": { "id": 1, "name": "Produto", "price": 99.99 },
+        "headers": {
+          "X-Product-Version": "2.1",
+          "ETag": "\"abc123\"",
+          "Last-Modified": "Wed, 15 Jan 2024 10:30:00 GMT"
+        }
+      }
+    }
+  }
+}
+```
+
+#### Características dos Headers Mockados:
+
+- **Flexibilidade Total**: Defina qualquer header HTTP personalizado
+- **Documentação Automática**: Headers aparecem automaticamente na documentação Swagger
+- **Simulação Realista**: Simule headers comuns como `X-Total-Count`, `Location`, `ETag`, etc.
+- **Por Método**: Cada método HTTP pode ter seus próprios headers específicos
+- **Opcional**: Headers são opcionais - endpoints funcionam normalmente sem eles
+
+#### Exemplos de Headers Úteis:
+
+- **Paginação**: `X-Total-Count`, `X-Page`, `X-Per-Page`
+- **Versionamento**: `X-API-Version`, `X-Product-Version`
+- **Cache**: `Cache-Control`, `ETag`, `Last-Modified`
+- **Rate Limiting**: `X-Rate-Limit`, `X-Rate-Remaining`
+- **Localização**: `Location` (para recursos criados)
+- **Timestamps**: `X-Created-At`, `X-Updated-At`
+- **Ambiente**: `X-Environment`, `X-Test-Mode`
+
 Métodos HTTP suportados:
 - GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, ALL
 
@@ -263,6 +325,11 @@ O arquivo JSON deve seguir a seguinte estrutura:
       "METODO_HTTP": {
         "body": {
           // Seus dados aqui
+        },
+        "headers": {
+          // Headers de resposta opcionais
+          "X-Custom-Header": "valor",
+          "Cache-Control": "max-age=3600"
         }
       }
     },
@@ -270,6 +337,10 @@ O arquivo JSON deve seguir a seguinte estrutura:
       "METODO_HTTP": {
         "body": {
           // Dados para endpoints com parâmetros
+        },
+        "headers": {
+          // Headers específicos para este endpoint
+          "X-Param-Type": "dynamic"
         }
       }
     }
@@ -287,14 +358,27 @@ No modo pasta, cada arquivo pode ser:
   { "id": 1, "body": "exemplo" }
 ]
 ```
+*Headers não são suportados em arquivos JSON simples - use a estrutura completa se precisar de headers*
 
 2. **JSON com estrutura de endpoints** (controle total):
 ```json
 {
   "endpoints": {
     "endpoint-name": {
-      "GET": { "body": [...] },
-      "POST": { "body": {...} }
+      "GET": { 
+        "body": [...],
+        "headers": {
+          "X-Method": "GET",
+          "Cache-Control": "public, max-age=300"
+        }
+      },
+      "POST": { 
+        "body": {...},
+        "headers": {
+          "X-Method": "POST",
+          "Location": "/endpoint-name/1"
+        }
+      }
     }
   }
 }

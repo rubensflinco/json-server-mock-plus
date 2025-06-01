@@ -1,0 +1,103 @@
+{
+  "endpoints": {
+    "cache-demo": {
+      "GET": {
+        "body": {
+          "message": "Este endpoint demonstra headers de cache",
+          "timestamp": "2024-01-15T10:30:00Z",
+          "data": "Dados importantes que podem ser cacheados"
+        },
+        "headers": {
+          "Cache-Control": "public, max-age=3600, s-maxage=7200",
+          "ETag": "\"demo-abc123\"",
+          "Last-Modified": "Mon, 15 Jan 2024 10:30:00 GMT",
+          "Expires": "Mon, 15 Jan 2024 11:30:00 GMT"
+        }
+      }
+    },
+    "rate-limit-demo": {
+      "GET": {
+        "body": {
+          "message": "Este endpoint demonstra headers de rate limiting",
+          "currentUsage": 15,
+          "plan": "premium"
+        },
+        "headers": {
+          "X-RateLimit-Limit": "100",
+          "X-RateLimit-Remaining": "85",
+          "X-RateLimit-Reset": "1705315800",
+          "Retry-After": "3600"
+        }
+      }
+    },
+    "pagination-demo": {
+      "GET": {
+        "body": [
+          { "id": 1, "title": "Item 1", "description": "Primeiro item" },
+          { "id": 2, "title": "Item 2", "description": "Segundo item" },
+          { "id": 3, "title": "Item 3", "description": "Terceiro item" }
+        ],
+        "headers": {
+          "X-Total-Count": "150",
+          "X-Page": "1", 
+          "X-Per-Page": "3",
+          "X-Total-Pages": "50",
+          "Link": "</pagination-demo?page=2>; rel=\"next\", </pagination-demo?page=50>; rel=\"last\""
+        }
+      }
+    },
+    "cors-demo": {
+      "OPTIONS": {
+        "body": "",
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+          "Access-Control-Max-Age": "86400"
+        }
+      },
+      "GET": {
+        "body": {
+          "message": "Este endpoint demonstra headers CORS",
+          "allowedOrigins": ["*"],
+          "supportedMethods": ["GET", "POST", "PUT", "DELETE"]
+        },
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Expose-Headers": "X-Custom-Header, X-API-Version"
+        }
+      }
+    },
+    "security-demo": {
+      "GET": {
+        "body": {
+          "message": "Este endpoint demonstra headers de segurança",
+          "securityLevel": "high",
+          "encrypted": true
+        },
+        "headers": {
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "DENY",
+          "X-XSS-Protection": "1; mode=block",
+          "Content-Security-Policy": "default-src 'self'"
+        }
+      }
+    },
+    "versioning-demo": {
+      "GET": {
+        "body": {
+          "message": "Este endpoint demonstra versionamento via headers",
+          "version": "2.0",
+          "features": ["caching", "rate-limiting", "authentication"]
+        },
+        "headers": {
+          "X-API-Version": "2.0",
+          "X-Deprecated": "false",
+          "X-Sunset": "2025-12-31",
+          "X-Min-Client-Version": "1.5.0"
+        }
+      }
+    }
+  }
+} 

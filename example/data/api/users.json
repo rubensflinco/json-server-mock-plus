@@ -3,16 +3,48 @@
     "users": {
       "GET": {
         "body": [
-          { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" },
-          { "id": 2, "name": "Maria Santos", "email": "maria@email.com", "age": 25, "city": "Rio de Janeiro" },
-          { "id": 3, "name": "Pedro Costa", "email": "pedro@email.com", "age": 35, "city": "Belo Horizonte" }
-        ]
+          { "id": 1, "name": "João Silva", "email": "joao@email.com", "role": "admin", "active": true },
+          { "id": 2, "name": "Maria Santos", "email": "maria@email.com", "role": "user", "active": true }
+        ],
+        "headers": {
+          "X-Total-Count": "2",
+          "X-API-Version": "2.0",
+          "X-Cache-Status": "HIT",
+          "Cache-Control": "public, max-age=300",
+          "X-Query-Time": "0.023s"
+        }
       },
       "POST": {
-        "body": { "id": 4, "name": "Novo Usuário", "email": "novo@email.com", "age": 28, "city": "Salvador" }
+        "body": {
+          "id": 3,
+          "name": "Novo Usuário",
+          "email": "novo@email.com",
+          "role": "user",
+          "active": true,
+          "createdAt": "2024-01-15T10:30:00Z"
+        },
+        "headers": {
+          "X-Created-At": "2024-01-15T10:30:00Z",
+          "Location": "/api/users/3",
+          "X-Rate-Limit-Remaining": "99",
+          "X-Response-Time": "0.045s"
+        }
       },
       "PUT": {
-        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" }
+        "body": {
+          "id": 1,
+          "name": "João Silva Atualizado",
+          "email": "joao.novo@email.com",
+          "role": "admin",
+          "active": true,
+          "updatedAt": "2024-01-15T11:45:00Z"
+        },
+        "headers": {
+          "X-Updated-At": "2024-01-15T11:45:00Z",
+          "X-Version": "2",
+          "ETag": "\"updated-abc123\"",
+          "X-Modification-Count": "1"
+        }
       },
       "PATCH": {
         "body": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31, "city": "São Paulo" }
@@ -23,21 +55,66 @@
     },
     "users/:id": {
       "GET": {
-        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30, "city": "São Paulo" }
+        "body": {
+          "id": 1,
+          "name": "João Silva",
+          "email": "joao@email.com",
+          "role": "admin",
+          "active": true,
+          "profile": {
+            "avatar": "https://example.com/avatar/1.jpg",
+            "bio": "Desenvolvedor Full Stack"
+          }
+        },
+        "headers": {
+          "X-User-Role": "admin",
+          "X-Last-Login": "2024-01-15T08:30:00Z",
+          "ETag": "\"user-1-abc123\"",
+          "Cache-Control": "private, max-age=600"
+        }
       },
       "PUT": {
         "body": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31, "city": "São Paulo" }
       },
       "DELETE": {
-        "body": { "message": "Usuário removido com sucesso" }
+        "body": {
+          "message": "Usuário removido com sucesso",
+          "deletedAt": "2024-01-15T12:00:00Z",
+          "userId": 1
+        },
+        "headers": {
+          "X-Deleted-At": "2024-01-15T12:00:00Z",
+          "X-Soft-Delete": "true",
+          "X-Retention-Days": "30"
+        }
       }
     },
     "users/:userId/posts": {
       "GET": {
         "body": [
-          { "id": 1, "userId": 1, "title": "Primeiro Post", "content": "Conteúdo do primeiro post", "createdAt": "2024-01-01" },
-          { "id": 2, "userId": 1, "title": "Segundo Post", "content": "Conteúdo do segundo post", "createdAt": "2024-01-02" }
-        ]
+          {
+            "id": 1,
+            "userId": 1,
+            "title": "Introdução ao Node.js",
+            "content": "Node.js é uma plataforma...",
+            "publishedAt": "2024-01-10T14:30:00Z",
+            "status": "published"
+          },
+          {
+            "id": 2,
+            "userId": 1,
+            "title": "Trabalhando com Express",
+            "content": "Express é um framework...",
+            "publishedAt": "2024-01-12T16:45:00Z",
+            "status": "published"
+          }
+        ],
+        "headers": {
+          "X-Posts-Count": "2",
+          "X-User-Posts": "true",
+          "X-Content-Type": "articles",
+          "X-Last-Post": "2024-01-12T16:45:00Z"
+        }
       }
     },
     "users/:userId/posts/:postId": {
