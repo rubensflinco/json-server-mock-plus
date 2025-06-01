@@ -10,6 +10,18 @@
           "X-Total-Count": "2",
           "X-API-Version": "1.0",
           "Cache-Control": "max-age=3600"
+        },
+        "cookies": {
+          "session_id": "abc123def456",
+          "user_preferences": "dark_mode=true;lang=pt",
+          "auth_token": {
+            "value": "jwt_token_here",
+            "options": {
+              "httpOnly": true,
+              "secure": true,
+              "maxAge": 3600000
+            }
+          }
         }
       },
       "POST": {
@@ -19,6 +31,17 @@
         "headers": {
           "X-Created-At": "2024-01-15T10:30:00Z",
           "Location": "/users/1"
+        },
+        "cookies": {
+          "new_user": "true",
+          "registration_source": "web_form",
+          "welcome_shown": {
+            "value": "false",
+            "options": {
+              "maxAge": 86400000,
+              "path": "/"
+            }
+          }
         }
       },
       "PUT": {
@@ -61,6 +84,17 @@
           "X-Product-Count": "2",
           "X-Price-Currency": "BRL",
           "X-Last-Updated": "2024-01-15T09:00:00Z"
+        },
+        "cookies": {
+          "viewed_products": "1,2",
+          "price_filter": "max=5000",
+          "sort_preference": {
+            "value": "price_asc",
+            "options": {
+              "maxAge": 604800000,
+              "sameSite": "lax"
+            }
+          }
         }
       },
       "POST": {

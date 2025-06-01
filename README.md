@@ -6,6 +6,7 @@ Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON 
 
 - 📋 **Documentação Automática Swagger**: Interface interativa para testar e documentar APIs
 - 🔧 **Headers Mockados**: Suporte a headers customizados de resposta para simulações realistas
+- 🍪 **Cookies Mockados**: Suporte a cookies customizados de resposta com opções avançadas
 - 🔄 **Schemas Inline**: Schemas gerados automaticamente baseados nos dados reais
 - 🚀 **Múltiplos Métodos HTTP**: Suporte a GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
 - 📁 **Modo Pasta ou Arquivo**: Carregamento de múltiplos arquivos JSON ou arquivo único
@@ -312,6 +313,127 @@ No Swagger, você verá:
 Métodos HTTP suportados:
 - GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, ALL
 
+### 🍪 Cookies Mockados
+
+**NOVO!** Agora você pode definir cookies personalizados que serão enviados como cookies de resposta em seus endpoints. Esta funcionalidade é perfeita para simular autenticação, preferências do usuário, sessões e muito mais.
+
+```json
+{
+  "endpoints": {
+    "auth/login": {
+      "POST": {
+        "body": {
+          "message": "Login realizado com sucesso",
+          "user": { "id": 1, "name": "João Silva" }
+        },
+        "headers": {
+          "X-Auth-Status": "success"
+        },
+        "cookies": {
+          "session_id": {
+            "value": "sess_abc123def456",
+            "options": {
+              "httpOnly": true,
+              "secure": true,
+              "sameSite": "strict",
+              "maxAge": 3600000,
+              "path": "/"
+            }
+          },
+          "auth_token": {
+            "value": "jwt_token_here",
+            "options": {
+              "httpOnly": true,
+              "secure": true,
+              "maxAge": 86400000
+            }
+          },
+          "user_id": "1",
+          "last_login": "2024-01-15T10:30:00Z"
+        }
+      }
+    },
+    "preferences": {
+      "GET": {
+        "body": {
+          "theme": "dark",
+          "language": "pt-BR"
+        },
+        "cookies": {
+          "theme": "dark",
+          "language": "pt-BR",
+          "preferences_version": {
+            "value": "1.2",
+            "options": {
+              "maxAge": 31536000000,
+              "sameSite": "lax"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+#### Características dos Cookies Mockados:
+
+- **Cookies Simples**: Defina apenas o valor como string
+- **Cookies Avançados**: Use objeto com `value` e `options` para controle total
+- **Opções Completas**: Suporte a todas as opções do Express.js (`httpOnly`, `secure`, `sameSite`, `maxAge`, `path`, `domain`)
+- **Documentação Automática**: Cookies aparecem automaticamente na documentação Swagger
+- **Simulação Realista**: Perfeito para testar autenticação, sessões, preferências, etc.
+- **Por Método**: Cada método HTTP pode ter seus próprios cookies específicos
+- **Opcional**: Cookies são opcionais - endpoints funcionam normalmente sem eles
+
+#### Formatos Suportados:
+
+**1. Cookie Simples (apenas valor):**
+```json
+"cookies": {
+  "simple_cookie": "valor_do_cookie"
+}
+```
+
+**2. Cookie com Opções:**
+```json
+"cookies": {
+  "advanced_cookie": {
+    "value": "valor_do_cookie",
+    "options": {
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "strict",
+      "maxAge": 3600000,
+      "path": "/",
+      "domain": ".exemplo.com"
+    }
+  }
+}
+```
+
+#### Opções de Cookie Disponíveis:
+
+- **`httpOnly`**: Torna o cookie acessível apenas via HTTP (não JavaScript)
+- **`secure`**: Cookie só é enviado via HTTPS
+- **`sameSite`**: Controla quando o cookie é enviado (`strict`, `lax`, `none`)
+- **`maxAge`**: Duração do cookie em milissegundos
+- **`path`**: Caminho onde o cookie é válido
+- **`domain`**: Domínio onde o cookie é válido
+- **`expires`**: Data de expiração específica
+
+#### Exemplos de Uso Prático:
+
+- **Autenticação**: `session_id`, `auth_token`, `refresh_token`
+- **Preferências**: `theme`, `language`, `timezone`
+- **Carrinho de Compras**: `cart_id`, `items_count`, `currency`
+- **Analytics**: `visitor_id`, `utm_source`, `session_start`
+- **Consentimento**: `cookie_consent`, `marketing_consent`, `analytics_consent`
+- **Configurações**: `layout_mode`, `notifications_enabled`
+
+Métodos HTTP suportados:
+- GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, ALL
+
 ## 📊 Estrutura do JSON
 
 ### Modo Arquivo
@@ -330,6 +452,17 @@ O arquivo JSON deve seguir a seguinte estrutura:
           // Headers de resposta opcionais
           "X-Custom-Header": "valor",
           "Cache-Control": "max-age=3600"
+        },
+        "cookies": {
+          // Cookies de resposta opcionais
+          "simple_cookie": "valor",
+          "advanced_cookie": {
+            "value": "valor_com_opcoes",
+            "options": {
+              "httpOnly": true,
+              "maxAge": 3600000
+            }
+          }
         }
       }
     },
@@ -341,6 +474,10 @@ O arquivo JSON deve seguir a seguinte estrutura:
         "headers": {
           // Headers específicos para este endpoint
           "X-Param-Type": "dynamic"
+        },
+        "cookies": {
+          // Cookies específicos para este endpoint
+          "param_cookie": "dynamic_value"
         }
       }
     }
@@ -359,6 +496,7 @@ No modo pasta, cada arquivo pode ser:
 ]
 ```
 *Headers não são suportados em arquivos JSON simples - use a estrutura completa se precisar de headers*
+*Cookies não são suportados em arquivos JSON simples - use a estrutura completa se precisar de cookies*
 
 2. **JSON com estrutura de endpoints** (controle total):
 ```json
@@ -370,6 +508,15 @@ No modo pasta, cada arquivo pode ser:
         "headers": {
           "X-Method": "GET",
           "Cache-Control": "public, max-age=300"
+        },
+        "cookies": {
+          "viewed_endpoint": "endpoint-name",
+          "visit_count": {
+            "value": "1",
+            "options": {
+              "maxAge": 86400000
+            }
+          }
         }
       },
       "POST": { 
@@ -377,6 +524,16 @@ No modo pasta, cada arquivo pode ser:
         "headers": {
           "X-Method": "POST",
           "Location": "/endpoint-name/1"
+        },
+        "cookies": {
+          "last_action": "create",
+          "csrf_token": {
+            "value": "abc123",
+            "options": {
+              "httpOnly": true,
+              "sameSite": "strict"
+            }
+          }
         }
       }
     }

@@ -12,6 +12,7 @@ interface EndpointConfig {
   [method: string]: {
     body: any;
     headers?: Record<string, string>; // Novo campo para headers mockados
+    cookies?: Record<string, string | { value: string; options?: any }>; // Novo campo para cookies mockados
   };
 }
 
@@ -108,14 +109,14 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
     }
 
     for (const [method, config] of Object.entries(methods)) {
-      const { body, headers } = config;
+      const { body, headers, cookies } = config;
       const methodLower = method.toLowerCase();
 
       // Configurar a documentação do endpoint
       const endpointDoc: any = {
         tags: [source], // Usar o nome da pasta/arquivo como tag
         summary: `${method} ${endpoint}`,
-        description: `Endpoint ${method} para ${endpoint}. Retorna dados mockados baseados no arquivo JSON.${headers ? '\n\n**Headers customizados configurados:** ' + Object.keys(headers).join(', ') : ''}`,
+        description: `Endpoint ${method} para ${endpoint}. Retorna dados mockados baseados no arquivo JSON.${headers ? '\n\n**Headers customizados configurados:** ' + Object.keys(headers).join(', ') : ''}${cookies ? '\n\n**Cookies mockados configurados:** ' + Object.keys(cookies).join(', ') : ''}`,
         responses: {
           200: {
             description: 'Successful response',
@@ -269,7 +270,8 @@ function loadJsonFilesFromDirectory(directoryPath: string): { endpoints: Record<
             combinedEndpoints[endpointName] = {
               GET: {
                 body: jsonContent,
-                headers: {} // Headers vazios por padrão para arquivos simples
+                headers: {}, // Headers vazios por padrão para arquivos simples
+                cookies: {} // Cookies vazios por padrão para arquivos simples
               }
             };
             
@@ -277,7 +279,8 @@ function loadJsonFilesFromDirectory(directoryPath: string): { endpoints: Record<
               config: {
                 GET: {
                   body: jsonContent,
-                  headers: {} // Headers vazios por padrão para arquivos simples
+                  headers: {}, // Headers vazios por padrão para arquivos simples
+                  cookies: {} // Cookies vazios por padrão para arquivos simples
                 }
               },
               source: folderName
@@ -318,7 +321,7 @@ export async function startServer(
     const fileName = inputPath.split(/[\/\\]/).pop()?.replace(/\.json$/, '') || 'arquivo';
     
     jsonData = {
-      endpoints: fileContent.endpoints || { [fileName]: { GET: { body: fileContent, headers: {} } } },
+      endpoints: fileContent.endpoints || { [fileName]: { GET: { body: fileContent, headers: {}, cookies: {} } } },
       endpointsInfo: {}
     };
     
@@ -371,10 +374,10 @@ export async function startServer(
     const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
     
     // Configura os métodos HTTP para cada endpoint
-    for (const [method, config] of Object.entries(methods as Record<string, { body: any; headers?: Record<string, string> }>)) {
-      const { body, headers } = config;
+    for (const [method, config] of Object.entries(methods as Record<string, { body: any; headers?: Record<string, string>; cookies?: Record<string, string | { value: string; options?: any }> }>)) {
+      const { body, headers, cookies } = config;
 
-      // Função auxiliar para aplicar headers e retornar resposta
+      // Função auxiliar para aplicar headers, cookies e retornar resposta
       const sendResponse = (res: express.Response) => {
         // Aplicar headers customizados se existirem
         if (headers) {
@@ -382,6 +385,20 @@ export async function startServer(
             res.header(key, value);
           });
         }
+        
+        // Aplicar cookies mockados se existirem
+        if (cookies) {
+          Object.entries(cookies).forEach(([name, cookieValue]) => {
+            if (typeof cookieValue === 'string') {
+              // Cookie simples (apenas valor)
+              res.cookie(name, cookieValue);
+            } else if (typeof cookieValue === 'object' && cookieValue.value) {
+              // Cookie com opções
+              res.cookie(name, cookieValue.value, cookieValue.options || {});
+            }
+          });
+        }
+        
         res.json(body);
       };
 

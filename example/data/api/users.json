@@ -12,6 +12,18 @@
           "X-Cache-Status": "HIT",
           "Cache-Control": "public, max-age=300",
           "X-Query-Time": "0.023s"
+        },
+        "cookies": {
+          "users_viewed": "true",
+          "last_query": "all_users",
+          "api_session": {
+            "value": "session_users_123",
+            "options": {
+              "httpOnly": true,
+              "maxAge": 1800000,
+              "path": "/api"
+            }
+          }
         }
       },
       "POST": {
@@ -28,6 +40,17 @@
           "Location": "/api/users/3",
           "X-Rate-Limit-Remaining": "99",
           "X-Response-Time": "0.045s"
+        },
+        "cookies": {
+          "user_created": "3",
+          "creation_method": "api",
+          "welcome_flow": {
+            "value": "pending",
+            "options": {
+              "maxAge": 3600000,
+              "sameSite": "lax"
+            }
+          }
         }
       },
       "PUT": {
