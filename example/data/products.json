@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Notebook Dell", "price": 3500, "category": "informática" },
+  { "id": 2, "name": "Smartphone Samsung", "price": 2000, "category": "eletrônicos" },
+  { "id": 3, "name": "Monitor LG", "price": 800, "category": "informática" },
+  { "id": 4, "name": "Teclado Mecânico", "price": 250, "category": "periféricos" }
+] 

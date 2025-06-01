@@ -1,0 +1,7 @@
+{
+  "appName": "JSON Server Plus",
+  "version": "2.0.0",
+  "features": ["multi-file", "recursive-loading", "auto-endpoints"],
+  "maxEndpoints": 100,
+  "enableLogging": true
+} 

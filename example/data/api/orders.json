@@ -1,0 +1,27 @@
+{
+  "endpoints": {
+    "api/orders": {
+      "GET": {
+        "data": [
+          { "id": 1, "userId": 1, "total": 3500, "status": "pendente" },
+          { "id": 2, "userId": 2, "total": 2000, "status": "entregue" }
+        ]
+      },
+      "POST": {
+        "data": { "id": 3, "userId": 1, "total": 800, "status": "criado" }
+      }
+    },
+    "orders/:id": {
+      "GET": {
+        "data": { "id": 1, "userId": 1, "total": 3500, "status": "pendente", "items": [1, 3] }
+      }
+    },
+    "test":{
+        "GET":{
+            "data":{
+                "message":"Hello World"
+            }
+        }
+    }
+  }
+} 

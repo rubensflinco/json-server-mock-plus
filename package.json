@@ -1,6 +1,6 @@
 {
   "name": "json-server-mock-plus",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Uma biblioteca CLI para criar servidores REST a partir de arquivos JSON",
   "license": "MIT",
   "author": {
@@ -37,7 +37,9 @@
   "homepage": "https://github.com/rubensflinco/json-server-mock-plus#readme",
   "scripts": {
     "build": "node scripts/build.js",
-    "start": "nodemon",
+    "start": "npm run start:directory",
+    "start:file": "nodemon --exec ts-node --project tsconfig.dev.json src/cli.ts --file ./example/db.json",
+    "start:directory": "nodemon --exec ts-node --project tsconfig.dev.json src/cli.ts --directory ./example/data",
     "dev": "ts-node src/cli.ts",
     "test": "jest",
     "prepublishOnly": "npm run build"

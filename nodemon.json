@@ -1,6 +1,5 @@
 {
   "watch": ["src", "example"],
   "ext": ".ts,.json",
-  "ignore": ["src/**/*.spec.ts"],
-  "exec": "ts-node --project tsconfig.dev.json src/cli.ts --file ./example/db.json"
+  "ignore": ["src/**/*.spec.ts"]
 } 
