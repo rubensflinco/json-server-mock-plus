@@ -1,6 +1,6 @@
 {
   "name": "json-server-mock-plus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Uma biblioteca CLI para criar servidores REST a partir de arquivos JSON",
   "license": "MIT",
   "author": {
@@ -9,12 +9,15 @@
     "url": "https://rubensflinco.com.br"
   },
   "type": "module",
-  "main": "./cli.js",
+  "main": "./dist/cli.js",
   "bin": {
-    "json-server-mock-plus": "./cli.js"
+    "json-server-mock-plus": "./dist/cli.js"
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    "package.json"
   ],
   "keywords": [
     "json-server",
