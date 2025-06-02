@@ -1,55 +1,43 @@
-# Guia de Uso
+# Uso
 
-Este guia completo mostra como usar todas as funcionalidades do JSON Server Mock Plus.
+## Sintaxe Básica
 
-## 🚀 Modos de Operação
-
-O JSON Server Mock Plus oferece dois modos principais de operação:
-
-### 1. Modo Arquivo
-
-Use um único arquivo JSON com todos os endpoints:
-
+### Modo Arquivo
 ```bash
-json-server-mock-plus -f db.json
+json-to-mock-api -f db.json
 ```
 
-### 2. Modo Pasta
-
-Use uma pasta com múltiplos arquivos JSON:
-
+### Modo Pasta
 ```bash
-json-server-mock-plus -d ./data
+json-to-mock-api -d ./data
 ```
 
-## 📋 Opções de Linha de Comando
+## Sintaxe Completa
 
 ```bash
-json-server-mock-plus [opções]
-
-Opções:
-  -f, --file <path>       Caminho para o arquivo JSON (modo arquivo)
-  -d, --directory <path>  Caminho para a pasta com arquivos JSON (modo pasta)
-  -p, --port <number>     Porta do servidor (padrão: 3000)
-  -h, --host <string>     Host do servidor (padrão: localhost)
-  --version              Mostrar versão
-  --help                 Mostrar ajuda
+json-to-mock-api [opções]
 ```
 
-### Exemplos de Uso
+## Exemplos Práticos
 
+### Exemplo 1: Arquivo JSON Simples
 ```bash
-# Modo arquivo na porta padrão
-json-server-mock-plus -f db.json
+json-to-mock-api -f db.json
+```
 
-# Modo pasta na porta 8080
-json-server-mock-plus -d ./mock-data -p 8080
+### Exemplo 2: Pasta com Porta Personalizada  
+```bash
+json-to-mock-api -d ./mock-data -p 8080
+```
 
-# Host específico para acesso externo
-json-server-mock-plus -f db.json -h 0.0.0.0 -p 3000
+### Exemplo 3: Host e Porta Específicos
+```bash
+json-to-mock-api -f db.json -h 0.0.0.0 -p 3000
+```
 
-# Usando npx
-npx --yes json-server-mock-plus -d ./data
+### Exemplo 4: Usando npx
+```bash
+npx --yes json-to-mock-api -d ./data
 ```
 
 ## 📁 Estrutura de Arquivos
@@ -140,7 +128,7 @@ Para controle total, use a estrutura de endpoints:
 
 ## 🔗 Parâmetros de Path
 
-O JSON Server Mock Plus suporta parâmetros dinâmicos usando a sintaxe `:parametro`:
+O Json-To-Mock-Api suporta parâmetros dinâmicos usando a sintaxe `:parametro`:
 
 ```json
 {

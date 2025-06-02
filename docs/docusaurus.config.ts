@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'JSON Server Mock Plus',
+  title: 'Json-To-Mock-Api',
   tagline: 'Crie servidores REST API mockados com documentação de Swagger automática, e muito mais!',
   favicon: 'favicon.ico',
 
@@ -18,12 +18,12 @@ const config: Config = {
   url: 'https://rubensflinco.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/json-server-plus/',
+  baseUrl: '/json-to-mock-api/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'rubensflinco', // Usually your GitHub org/user name.
-  projectName: 'json-server-plus', // Usually your repo name.
+  projectName: 'json-to-mock-api', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -45,7 +45,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/rubensflinco/json-server-plus/tree/main/docs/',
+            'https://github.com/rubensflinco/json-to-mock-api/tree/main/docs/',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -62,9 +62,9 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: 'JSON Server Mock Plus',
+      title: 'Json-To-Mock-Api',
       logo: {
-        alt: 'JSON Server Mock Plus Logo',
+        alt: 'Json-To-Mock-Api Logo',
         src: 'android-chrome-512x512.png',
       },
       items: [
@@ -75,12 +75,12 @@ const config: Config = {
           label: 'Documentação',
         },
         {
-          href: 'https://github.com/rubensflinco/json-server-plus',
+          href: 'https://github.com/rubensflinco/json-to-mock-api',
           label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://www.npmjs.com/package/json-server-mock-plus',
+          href: 'https://www.npmjs.com/package/json-to-mock-api',
           label: 'NPM',
           position: 'right',
         },
@@ -111,11 +111,11 @@ const config: Config = {
           items: [
             {
               label: 'GitHub Issues',
-              href: 'https://github.com/rubensflinco/json-server-plus/issues',
+              href: 'https://github.com/rubensflinco/json-to-mock-api/issues',
             },
             {
               label: 'GitHub Discussions',
-              href: 'https://github.com/rubensflinco/json-server-plus/discussions',
+              href: 'https://github.com/rubensflinco/json-to-mock-api/discussions',
             },
           ],
         },
@@ -124,16 +124,16 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/rubensflinco/json-server-plus',
+              href: 'https://github.com/rubensflinco/json-to-mock-api',
             },
             {
               label: 'NPM',
-              href: 'https://www.npmjs.com/package/json-server-mock-plus',
+              href: 'https://www.npmjs.com/package/json-to-mock-api',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} JSON Server Mock Plus. Construído com Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Json-To-Mock-Api. Construído com Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

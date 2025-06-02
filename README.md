@@ -1,4 +1,4 @@
-# JSON Server Mock Plus
+# Json-To-Mock-Api
 
 Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON ou pastas com múltiplos arquivos JSON, com **documentação automática Swagger integrada**.
 
@@ -18,10 +18,10 @@ Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON 
 
 ```bash
 # Instalação global
-npm install -g json-server-mock-plus
+npm install -g json-to-mock-api
 
 # Ou use diretamente com npx
-npx --yes json-server-mock-plus
+npx --yes json-to-mock-api
 ```
 
 ## 📚 Documentação Swagger Automática
@@ -48,10 +48,10 @@ Use um único arquivo JSON com todos os endpoints:
 
 ```bash
 # Usando a instalação global
-json-server-mock-plus -f db.json
+json-to-mock-api -f db.json
 
 # Ou usando npx
-npx --yes json-server-mock-plus -f db.json
+npx --yes json-to-mock-api -f db.json
 ```
 
 ### Modo Pasta (Novo!)
@@ -60,10 +60,10 @@ Use uma pasta com múltiplos arquivos JSON que serão carregados automaticamente
 
 ```bash
 # Usando a instalação global
-json-server-mock-plus -d ./data
+json-to-mock-api -d ./data
 
 # Ou usando npx
-npx --yes json-server-mock-plus -d ./data
+npx --yes json-to-mock-api -d ./data
 ```
 
 ## Modo Pasta - Estrutura de Arquivos
@@ -184,19 +184,19 @@ Por padrão, o servidor será iniciado em `http://localhost:3000` com a document
 
 ```bash
 # Modo arquivo - Iniciar na porta 8080
-npx json-server-mock-plus -f db.json -p 8080
+npx json-to-mock-api -f db.json -p 8080
 # Acesse: http://localhost:8080/ (Swagger UI)
 
 # Modo pasta - Carregar todos os JSONs de uma pasta
-npx json-server-mock-plus -d ./data
+npx json-to-mock-api -d ./data
 # Acesse: http://localhost:3000/ (Swagger UI)
 
 # Modo pasta - Iniciar em um host específico
-npx json-server-mock-plus -d ./api-data -h 0.0.0.0 -p 8080
+npx json-to-mock-api -d ./api-data -h 0.0.0.0 -p 8080
 # Acesse: http://0.0.0.0:8080/ (Swagger UI)
 
 # Modo arquivo - Usando um arquivo JSON local com caminho relativo
-npx json-server-mock-plus -f ./data/db.json
+npx json-to-mock-api -f ./data/db.json
 # Acesse: http://localhost:3000/ (Swagger UI)
 ```
 

@@ -1,10 +1,10 @@
 # Instalação
 
-Este guia mostra como instalar e configurar o JSON Server Mock Plus em diferentes ambientes.
+Este guia mostra como instalar e configurar o Json-To-Mock-Api em diferentes ambientes.
 
 ## 📋 Pré-requisitos
 
-Antes de instalar o JSON Server Mock Plus, certifique-se de ter:
+Antes de instalar o Json-To-Mock-Api, certifique-se de ter:
 
 - **Node.js** versão 16.0 ou superior
 - **npm** versão 7.0 ou superior (incluído com Node.js)
@@ -23,17 +23,17 @@ npm --version
 
 ### 1. Instalação Global (Recomendado)
 
-A instalação global permite usar o comando `json-server-mock-plus` em qualquer lugar do sistema:
+A instalação global permite usar o comando `json-to-mock-api` em qualquer lugar do sistema:
 
 ```bash
-npm install -g json-server-mock-plus
+npm install -g json-to-mock-api
 ```
 
 **Uso após instalação global:**
 
 ```bash
-json-server-mock-plus -f db.json
-json-server-mock-plus -d ./data
+json-to-mock-api -f db.json
+json-to-mock-api -d ./data
 ```
 
 ### 2. Uso com npx (Sem Instalação)
@@ -42,10 +42,10 @@ Use diretamente sem instalar globalmente:
 
 ```bash
 # Sempre usa a versão mais recente
-npx --yes json-server-mock-plus -f db.json
+npx --yes json-to-mock-api -f db.json
 
 # Especificar versão
-npx json-server-mock-plus@latest -d ./data
+npx json-to-mock-api@latest -d ./data
 ```
 
 ### 3. Instalação Local no Projeto
@@ -54,17 +54,17 @@ Para projetos específicos, instale como dependência de desenvolvimento:
 
 ```bash
 # Instalar como dev dependency
-npm install --save-dev json-server-mock-plus
+npm install --save-dev json-to-mock-api
 
 # Ou com yarn
-yarn add --dev json-server-mock-plus
+yarn add --dev json-to-mock-api
 ```
 
 **Uso em projetos locais:**
 
 ```bash
 # Via npm scripts
-npx json-server-mock-plus -f db.json
+npx json-to-mock-api -f db.json
 
 # Ou adicionar ao package.json
 ```
@@ -72,8 +72,8 @@ npx json-server-mock-plus -f db.json
 ```json title="package.json"
 {
   "scripts": {
-    "mock-server": "json-server-mock-plus -f db.json",
-    "mock-dev": "json-server-mock-plus -d ./mock-data -p 3001"
+    "mock-server": "json-to-mock-api -f db.json",
+    "mock-dev": "json-to-mock-api -d ./mock-data -p 3001"
   }
 }
 ```
@@ -134,7 +134,7 @@ Crie um arquivo `db.json` para começar:
 1. **Verificar se o comando está disponível:**
 
 ```bash
-json-server-mock-plus --version
+json-to-mock-api --version
 ```
 
 2. **Criar um arquivo de teste:**
@@ -154,7 +154,7 @@ json-server-mock-plus --version
 3. **Iniciar o servidor:**
 
 ```bash
-json-server-mock-plus -f test.json
+json-to-mock-api -f test.json
 ```
 
 4. **Verificar se está funcionando:**
@@ -173,7 +173,7 @@ echo '[{"id": 1, "name": "Teste"}]' > mock-data/users.json
 2. **Iniciar em modo pasta:**
 
 ```bash
-json-server-mock-plus -d mock-data
+json-to-mock-api -d mock-data
 ```
 
 ## 🐛 Solução de Problemas
@@ -182,18 +182,18 @@ json-server-mock-plus -d mock-data
 
 #### Erro: "comando não encontrado"
 
-**Problema:** `json-server-mock-plus: command not found`
+**Problema:** `json-to-mock-api: command not found`
 
 **Soluções:**
 ```bash
 # 1. Verificar se foi instalado globalmente
-npm list -g json-server-mock-plus
+npm list -g json-to-mock-api
 
 # 2. Reinstalar globalmente
-npm install -g json-server-mock-plus
+npm install -g json-to-mock-api
 
 # 3. Usar npx como alternativa
-npx json-server-mock-plus --version
+npx json-to-mock-api --version
 ```
 
 #### Erro de Permissão (Linux/Mac)
@@ -203,14 +203,14 @@ npx json-server-mock-plus --version
 **Soluções:**
 ```bash
 # 1. Usar sudo (não recomendado)
-sudo npm install -g json-server-mock-plus
+sudo npm install -g json-to-mock-api
 
 # 2. Configurar npm para pasta do usuário (recomendado)
 mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
-npm install -g json-server-mock-plus
+npm install -g json-to-mock-api
 ```
 
 #### Porta em Uso
@@ -220,7 +220,7 @@ npm install -g json-server-mock-plus
 **Soluções:**
 ```bash
 # Usar porta diferente
-json-server-mock-plus -f db.json -p 3001
+json-to-mock-api -f db.json -p 3001
 
 # Ou encontrar processo usando a porta
 lsof -ti:3000 | xargs kill -9  # Mac/Linux
@@ -233,7 +233,7 @@ Execute este script para verificar se tudo está funcionando:
 
 ```bash
 #!/bin/bash
-echo "🔍 Verificando instalação do JSON Server Mock Plus..."
+echo "🔍 Verificando instalação do Json-To-Mock-Api..."
 
 # Verificar Node.js
 if command -v node &> /dev/null; then
@@ -251,12 +251,12 @@ else
     exit 1
 fi
 
-# Verificar json-server-mock-plus
-if command -v json-server-mock-plus &> /dev/null; then
-    echo "✅ json-server-mock-plus: $(json-server-mock-plus --version)"
+# Verificar json-to-mock-api
+if command -v json-to-mock-api &> /dev/null; then
+    echo "✅ json-to-mock-api: $(json-to-mock-api --version)"
 else
-    echo "⚠️  json-server-mock-plus não encontrado globalmente"
-    echo "💡 Tente: npx json-server-mock-plus --version"
+    echo "⚠️  json-to-mock-api não encontrado globalmente"
+    echo "💡 Tente: npx json-to-mock-api --version"
 fi
 
 echo "🎉 Verificação concluída!"
@@ -268,35 +268,35 @@ echo "🎉 Verificação concluída!"
 
 ```bash
 # Versão instalada globalmente
-npm list -g json-server-mock-plus
+npm list -g json-to-mock-api
 
 # Versão mais recente disponível
-npm view json-server-mock-plus version
+npm view json-to-mock-api version
 ```
 
 ### Atualizar para Versão Mais Recente
 
 ```bash
 # Atualizar instalação global
-npm update -g json-server-mock-plus
+npm update -g json-to-mock-api
 
 # Ou reinstalar
-npm uninstall -g json-server-mock-plus
-npm install -g json-server-mock-plus@latest
+npm uninstall -g json-to-mock-api
+npm install -g json-to-mock-api@latest
 ```
 
 ## 🔄 Desinstalação
 
-Se precisar remover o JSON Server Mock Plus:
+Se precisar remover o Json-To-Mock-Api:
 
 ```bash
 # Desinstalar globalmente
-npm uninstall -g json-server-mock-plus
+npm uninstall -g json-to-mock-api
 
 # Desinstalar localmente
-npm uninstall json-server-mock-plus
+npm uninstall json-to-mock-api
 ```
 
 ---
 
-**Próximo passo:** Agora que você tem o JSON Server Mock Plus instalado, vamos aprender como usá-lo no [Guia de Uso](./usage)! 🚀 
+**Próximo passo:** Agora que você tem o Json-To-Mock-Api instalado, vamos aprender como usá-lo no [Guia de Uso](./usage)! 🚀 

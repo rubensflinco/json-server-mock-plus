@@ -11,7 +11,7 @@ const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.me
 const program = new Command();
 
 program
-  .name('json-server-mock-plus')
+  .name('json-to-mock-api')
   .description('Crie um servidor REST a partir de um arquivo JSON ou pasta com arquivos JSON')
   .version(packageJson.version)
   .option('-f, --file <path>', 'caminho para o arquivo JSON (modo compatibilidade)')
@@ -34,11 +34,11 @@ program
       const inputPath = options.file || options.directory;
       const isDirectory = !!options.directory;
 
-      console.log(chalk.blue(`[json-server-mock-plus v${packageJson.version}] 🚀 Iniciando servidor...`));
+      console.log(chalk.blue(`[json-to-mock-api v${packageJson.version}] 🚀 Iniciando servidor...`));
       await startServer(inputPath, parseInt(options.port), options.host, isDirectory);
-      console.log(chalk.green(`[json-server-mock-plus v${packageJson.version}] ✅ Servidor rodando em http://${options.host}:${options.port}`));
+      console.log(chalk.green(`[json-to-mock-api v${packageJson.version}] ✅ Servidor rodando em http://${options.host}:${options.port}`));
     } catch (error) {
-      console.error(chalk.red(`[json-server-mock-plus v${packageJson.version}] ❌ Erro ao iniciar o servidor:`), error);
+      console.error(chalk.red(`[json-to-mock-api v${packageJson.version}] ❌ Erro ao iniciar o servidor:`), error);
       process.exit(1);
     }
   });

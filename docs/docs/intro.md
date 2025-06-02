@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Introdução
 
-Bem-vindo ao **JSON Server Mock Plus**! 🚀
+Bem-vindo ao Json-To-Mock-Api! 🚀
 
 Uma biblioteca CLI simples e poderosa para criar servidores REST a partir de arquivos JSON ou pastas com múltiplos arquivos JSON, com **documentação automática Swagger integrada**.
 
@@ -20,7 +20,7 @@ Uma biblioteca CLI simples e poderosa para criar servidores REST a partir de arq
 - 🔗 **Parâmetros de Path**: Suporte automático a parâmetros como `:id`, `:userId`, etc.
 - 🏷️ **Agrupamento Inteligente**: Endpoints agrupados por pasta ou arquivo de origem
 
-## 🎯 Por que usar o JSON Server Mock Plus?
+## 🎯 Por que usar o Json-To-Mock-Api?
 
 ### Para Desenvolvedores Frontend
 - **Desenvolvimento Independente**: Não dependa do backend estar pronto
@@ -43,10 +43,10 @@ Uma biblioteca CLI simples e poderosa para criar servidores REST a partir de arq
 
 ```bash
 # Instalação global
-npm install -g json-server-mock-plus
+npm install -g json-to-mock-api
 
 # Ou use diretamente com npx
-npx --yes json-server-mock-plus
+npx --yes json-to-mock-api
 ```
 
 ### Primeiro Uso
@@ -71,7 +71,7 @@ npx --yes json-server-mock-plus
 2. **Inicie o servidor:**
 
 ```bash
-npx json-server-mock-plus -f db.json
+npx json-to-mock-api -f db.json
 ```
 
 3. **Acesse a documentação:**
@@ -88,11 +88,11 @@ npx json-server-mock-plus -f db.json
 
 ## 🤝 Contribuindo
 
-O JSON Server Mock Plus é um projeto open source. Contribuições são bem-vindas!
+O Json-To-Mock-Api é um projeto open source. Contribuições são bem-vindas!
 
-- [GitHub Repository](https://github.com/rubensflinco/json-server-plus)
-- [Issues](https://github.com/rubensflinco/json-server-plus/issues)
-- [Discussions](https://github.com/rubensflinco/json-server-plus/discussions)
+- [GitHub Repository](https://github.com/rubensflinco/json-to-mock-api)
+- [Issues](https://github.com/rubensflinco/json-to-mock-api/issues)
+- [Discussions](https://github.com/rubensflinco/json-to-mock-api/discussions)
 
 ---
 

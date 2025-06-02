@@ -98,7 +98,7 @@ export default function HomepageFeatures(): JSX.Element {
               <h4>2. Execute o comando:</h4>
               <div className={styles.codeBlock}>
                 <pre>
-                  <code>npx --yes json-server-mock-plus -f db.json</code>
+                  <code>npx --yes json-to-mock-api -f db.json</code>
                 </pre>
               </div>
               <h4>3. Acesse:</h4>

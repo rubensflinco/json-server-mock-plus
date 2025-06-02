@@ -188,10 +188,10 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
   return {
     openapi: '3.0.0',
     info: {
-      title: 'JSON Server Mock Plus API',
+      title: 'Json-To-Mock-Api API',
       version: packageJson.version,
       description: `
-Esta é a documentação automática gerada para todos os endpoints disponíveis no JSON Server Mock Plus.
+Esta é a documentação automática gerada para todos os endpoints disponíveis no Json-To-Mock-Api.
 
 ## Como Usar
 
@@ -203,11 +203,11 @@ Os dados retornados são baseados nos arquivos JSON configurados.
 - **Path Parameters**: \`:id\`, \`:userId\`, etc. são automaticamente detectados
 - **Request Body**: Para POST, PUT e PATCH requests
 
-Desenvolvido com ❤️ usando JSON Server Mock Plus v${packageJson.version}
+Desenvolvido com ❤️ usando Json-To-Mock-Api v${packageJson.version}
       `,
       contact: {
-        name: 'JSON Server Mock Plus',
-        url: 'https://github.com/rubensflinco/json-server-mock-plus'
+        name: 'Json-To-Mock-Api',
+        url: 'https://github.com/rubensflinco/json-to-mock-api'
       },
       license: {
         name: 'MIT',
@@ -348,7 +348,7 @@ export async function startServer(
   // Configurar Swagger UI no endpoint raiz
   app.use('/', swaggerUi.serve);
   app.get('/', swaggerUi.setup(swaggerSpec, {
-    customSiteTitle: 'JSON Server Mock Plus v' + packageJson.version + ' - Documentação API',
+    customSiteTitle: 'Json-To-Mock-Api v' + packageJson.version + ' - Documentação API',
     customfavIcon: 'https://swagger.io/swagger-ui/favicon.ico',
     customCss: `
       .swagger-ui .topbar { display: none; }

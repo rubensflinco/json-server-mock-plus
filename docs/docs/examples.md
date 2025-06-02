@@ -1,6 +1,6 @@
 # Exemplos Práticos
 
-Esta seção contém exemplos completos e casos de uso reais do JSON Server Mock Plus.
+Esta seção contém exemplos completos e casos de uso reais do Json-To-Mock-Api.
 
 ## 🚀 Exemplos Básicos
 
@@ -26,7 +26,7 @@ Esta seção contém exemplos completos e casos de uso reais do JSON Server Mock
 
 **Uso:**
 ```bash
-json-server-mock-plus -f users-simple.json
+json-to-mock-api -f users-simple.json
 ```
 
 **Endpoints disponíveis:**
@@ -497,7 +497,7 @@ api-data/
 
 **Uso:**
 ```bash
-json-server-mock-plus -d api-data
+json-to-mock-api -d api-data
 ```
 
 **Endpoints gerados:**
@@ -619,7 +619,7 @@ Copie qualquer exemplo acima e salve em um arquivo `.json`:
 echo '{"endpoints": {...}}' > meu-exemplo.json
 
 # Executar
-json-server-mock-plus -f meu-exemplo.json
+json-to-mock-api -f meu-exemplo.json
 ```
 
 ### 2. Combinar Exemplos
@@ -644,7 +644,7 @@ Organize exemplos em pastas separadas:
 ```bash
 mkdir minha-api
 # Salve cada exemplo em arquivos separados
-json-server-mock-plus -d minha-api
+json-to-mock-api -d minha-api
 ```
 
 ## 💡 Dicas para Criar Seus Próprios Exemplos
