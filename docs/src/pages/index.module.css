@@ -1,0 +1,66 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quickStart {
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.codeBlock {
+  background: var(--ifm-code-background);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.codeBlock code {
+  color: var(--ifm-code-color, var(--ifm-color-content));
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+  }
+  
+  .codeBlock code {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .codeBlock {
+    padding: 10px 16px;
+  }
+}
