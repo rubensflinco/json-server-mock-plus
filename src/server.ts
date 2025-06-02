@@ -188,7 +188,7 @@ function generateSwaggerDocumentation(endpointsInfo: Record<string, EndpointInfo
   return {
     openapi: '3.0.0',
     info: {
-      title: 'Json-To-Mock-Api API',
+      title: 'Json-To-Mock-Api',
       version: packageJson.version,
       description: `
 Esta é a documentação automática gerada para todos os endpoints disponíveis no Json-To-Mock-Api.
@@ -207,11 +207,11 @@ Desenvolvido com ❤️ usando Json-To-Mock-Api v${packageJson.version}
       `,
       contact: {
         name: 'Json-To-Mock-Api',
-        url: 'https://github.com/rubensflinco/json-to-mock-api'
+        url: 'https://jsont-to-mock-api.fdoma.in'
       },
       license: {
         name: 'MIT',
-        url: 'https://opensource.org/licenses/MIT'
+        url: 'https://github.com/rubensflinco/json-to-mock-api/blob/main/LICENSE'
       }
     },
     servers: [
@@ -349,7 +349,7 @@ export async function startServer(
   app.use('/', swaggerUi.serve);
   app.get('/', swaggerUi.setup(swaggerSpec, {
     customSiteTitle: 'Json-To-Mock-Api v' + packageJson.version + ' - Documentação API',
-    customfavIcon: 'https://swagger.io/swagger-ui/favicon.ico',
+    customfavIcon: 'https://jsont-to-mock-api.fdoma.in/favicon.ico',
     customCss: `
       .swagger-ui .topbar { display: none; }
       .swagger-ui .info .title { color: #3b82f6; }
