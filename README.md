@@ -1,557 +1,116 @@
 # Json-To-Mock-Api
 
-Uma biblioteca CLI simples para criar servidores REST a partir de arquivos JSON ou pastas com múltiplos arquivos JSON, com **documentação automática Swagger integrada**.
+A simple CLI library to create REST servers from JSON files or folders with multiple JSON files, featuring **automatic integrated Swagger documentation**.
 
-## ✨ Funcionalidades
+[![NPM Version](https://img.shields.io/npm/v/json-to-mock-api.svg)](https://www.npmjs.com/package/json-to-mock-api)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/rubensflinco/json-to-mock-api/blob/main/LICENSE)
+[![GitHub](https://img.shields.io/github/stars/rubensflinco/json-to-mock-api?style=social)](https://github.com/rubensflinco/json-to-mock-api)
 
-- 📋 **Documentação Automática Swagger**: Interface interativa para testar e documentar APIs
-- 🔧 **Headers Mockados**: Suporte a headers customizados de resposta para simulações realistas
-- 🍪 **Cookies Mockados**: Suporte a cookies customizados de resposta com opções avançadas
-- 🔄 **Schemas Inline**: Schemas gerados automaticamente baseados nos dados reais
-- 🚀 **Múltiplos Métodos HTTP**: Suporte a GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
-- 📁 **Modo Pasta ou Arquivo**: Carregamento de múltiplos arquivos JSON ou arquivo único
-- 🌐 **CORS Habilitado**: Pronto para uso em aplicações web
-- 🔗 **Parâmetros de Path**: Suporte automático a parâmetros como `:id`, `:userId`, etc.
-- 🏷️ **Agrupamento Inteligente**: Endpoints agrupados por pasta ou arquivo de origem
+## ✨ Features
 
-## Instalação
+- 📋 **Automatic Swagger Documentation**: Interactive interface to test and document APIs
+- 🔧 **Mocked Headers**: Support for custom response headers for realistic simulations
+- 🍪 **Mocked Cookies**: Support for custom response cookies with advanced options
+- 🔄 **Inline Schemas**: Automatically generated schemas based on real data
+- 🚀 **Multiple HTTP Methods**: Support for GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD
+- 📁 **File or Folder Mode**: Load multiple JSON files or single file
+- 🌐 **CORS Enabled**: Ready for web applications
+- 🔗 **Path Parameters**: Automatic support for parameters like `:id`, `:userId`, etc.
+- 🏷️ **Smart Grouping**: Endpoints grouped by folder or file origin
+
+## Installation
 
 ```bash
-# Instalação global
+# Global installation
 npm install -g json-to-mock-api
 
-# Ou use diretamente com npx
+# Or use directly with npx
 npx --yes json-to-mock-api
 ```
 
-## 📚 Documentação Swagger Automática
+## Quick Start
 
-Ao iniciar o servidor, você terá acesso automático a uma interface Swagger completa:
+### 1. Create a JSON file called `db.json`:
 
-- **Interface Principal**: `http://localhost:3000/` - Interface Swagger UI interativa
-- **Especificação JSON**: `http://localhost:3000/swagger.json` - Especificação OpenAPI 3.0
+```json
+{
+  "endpoints": {
+    "users": {
+      "GET": {
+        "body": [
+          { "id": 1, "name": "John Doe", "email": "john@email.com" },
+          { "id": 2, "name": "Jane Smith", "email": "jane@email.com" }
+        ],
+        "headers": {
+          "X-Total-Count": "2"
+        },
+        "cookies": {
+          "session": "abc123"
+        }
+      },
+      "POST": {
+        "body": { "id": 3, "name": "New User", "email": "new@email.com" }
+      }
+    },
+    "users/:id": {
+      "GET": {
+        "body": { "id": 1, "name": "John Doe", "email": "john@email.com" }
+      }
+    }
+  }
+}
+```
 
-### 🎯 Benefícios da Documentação Swagger
-
-1. **Interface Interativa**: Teste todos os endpoints diretamente no navegador
-2. **Documentação Automática**: Schemas e exemplos gerados automaticamente dos seus dados JSON
-3. **Parâmetros de Path**: Detecção automática de parâmetros como `:id`, `:userId`
-4. **Agrupamento por Origem**: Endpoints organizados por pasta ou arquivo
-5. **Exemplos Reais**: Exemplos baseados nos dados reais dos seus arquivos JSON
-6. **Múltiplos Métodos**: Documentação completa para GET, POST, PUT, DELETE, etc.
-
-## Modos de Uso
-
-### Modo Arquivo (Compatibilidade)
-
-Use um único arquivo JSON com todos os endpoints:
+### 2. Run the command:
 
 ```bash
-# Usando a instalação global
-json-to-mock-api -f db.json
-
-# Ou usando npx
 npx --yes json-to-mock-api -f db.json
 ```
 
-### Modo Pasta (Novo!)
+### 3. Access:
 
-Use uma pasta com múltiplos arquivos JSON que serão carregados automaticamente:
+- **Swagger UI**: `http://localhost:3000/` (Interactive documentation)
+- **API Endpoint**: `http://localhost:3000/users`
+- **OpenAPI Spec**: `http://localhost:3000/swagger.json`
 
+## Usage Modes
+
+### File Mode
 ```bash
-# Usando a instalação global
+json-to-mock-api -f db.json
+```
+
+### Folder Mode
+```bash
 json-to-mock-api -d ./data
-
-# Ou usando npx
-npx --yes json-to-mock-api -d ./data
 ```
 
-## Modo Pasta - Estrutura de Arquivos
+## CLI Options
 
-No modo pasta, você pode organizar seus endpoints em múltiplos arquivos JSON. Existem duas formas de estruturar os arquivos:
+- `-f, --file <path>`: Path to JSON file
+- `-d, --directory <path>`: Path to folder with JSON files  
+- `-p, --port <number>`: Server port (default: 3000)
+- `-h, --host <string>`: Server host (default: localhost)
 
-### 1. Arquivos JSON Simples
+## 📚 Complete Documentation
 
-Cada arquivo JSON será transformado automaticamente em um endpoint GET:
+For detailed documentation, advanced features, examples, and guides, visit:
 
-```
-data/
-├── users.json          # Endpoint: /users (Grupo: users)
-├── products.json       # Endpoint: /products (Grupo: products)
-├── api/
-│   └── orders.json     # Endpoint: /api/orders (Grupo: api)
-└── config/
-    └── settings.json   # Endpoint: /config/settings (Grupo: config)
-```
+**[Official Documentation →](https://jsont-to-mock-api.fdoma.in/)**
 
-**Exemplo** - `data/users.json`:
-```json
-[
-  { "id": 1, "name": "João Silva", "email": "joao@email.com" },
-  { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
-]
-```
-Resultado: Endpoint `GET /users` retornando esses dados, agrupado como "users" no Swagger.
+The documentation includes:
+- Complete setup guides
+- Folder mode examples
+- Advanced JSON structures
+- Headers and cookies configuration
+- Path parameters usage
+- Multiple file organization strategies
+- Best practices and tips
 
-### 2. Arquivos com Estrutura de Endpoints
+## License
 
-Para maior controle, use a estrutura completa com múltiplos métodos HTTP:
+MIT
 
-**Exemplo** - `data/api/users.json`:
-```json
-{
-  "endpoints": {
-    "users": {
-      "GET": {
-        "body": [
-          { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30 },
-          { "id": 2, "name": "Maria Santos", "email": "maria@email.com", "age": 25 }
-        ]
-      },
-      "POST": {
-        "body": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com", "age": 28 }
-      }
-    },
-    "users/:id": {
-      "GET": {
-        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com", "age": 30 }
-      },
-      "PUT": {
-        "body": { "id": 1, "name": "João Silva Atualizado", "email": "joao.novo@email.com", "age": 31 }
-      },
-      "DELETE": {
-        "body": { "message": "Usuário removido com sucesso" }
-      }
-    },
-    "users/:userId/posts": {
-      "GET": {
-        "body": [
-          { "id": 1, "userId": 1, "title": "Primeiro Post", "content": "Conteúdo do primeiro post" }
-        ]
-      }
-    }
-  }
-}
-```
+---
 
-No Swagger, estes endpoints serão agrupados como "users" e cada parâmetro `:id`, `:userId` será automaticamente documentado como parâmetro de path obrigatório.
-
-## Modo Arquivo (Formato Original)
-
-1. Crie um arquivo JSON com seus endpoints. Por exemplo, `db.json`:
-
-```json
-{
-  "endpoints": {
-    "users": {
-      "GET": {
-        "body": [
-          { "id": 1, "name": "João Silva", "email": "joao@email.com" },
-          { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
-        ]
-      },
-      "POST": {
-        "body": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com" }
-      }
-    },
-    "products": {
-      "GET": {
-        "body": [
-          { "id": 1, "name": "Notebook", "price": 3500 },
-          { "id": 2, "name": "Smartphone", "price": 2000 }
-        ]
-      }
-    },
-    "users/:id": {
-      "GET": {
-        "body": { "id": 1, "name": "João Silva", "email": "joao@email.com" }
-      }
-    }
-  }
-}
-```
-
-Por padrão, o servidor será iniciado em `http://localhost:3000` com a documentação Swagger na raiz.
-
-## Opções
-
-- `-f, --file <path>`: Caminho para o arquivo JSON (modo compatibilidade)
-- `-d, --directory <path>`: Caminho para a pasta com arquivos JSON (modo pasta)
-- `-p, --port <number>`: Porta do servidor (padrão: 3000)
-- `-h, --host <string>`: Host do servidor (padrão: localhost)
-
-## Exemplos de Uso do CLI
-
-```bash
-# Modo arquivo - Iniciar na porta 8080
-npx json-to-mock-api -f db.json -p 8080
-# Acesse: http://localhost:8080/ (Swagger UI)
-
-# Modo pasta - Carregar todos os JSONs de uma pasta
-npx json-to-mock-api -d ./data
-# Acesse: http://localhost:3000/ (Swagger UI)
-
-# Modo pasta - Iniciar em um host específico
-npx json-to-mock-api -d ./api-data -h 0.0.0.0 -p 8080
-# Acesse: http://0.0.0.0:8080/ (Swagger UI)
-
-# Modo arquivo - Usando um arquivo JSON local com caminho relativo
-npx json-to-mock-api -f ./data/db.json
-# Acesse: http://localhost:3000/ (Swagger UI)
-```
-
-## 🚀 Vantagens
-
-### Modo Pasta
-1. **Organização**: Separe endpoints em arquivos lógicos
-2. **Manutenção**: Facilita a manutenção de APIs grandes
-3. **Colaboração**: Diferentes desenvolvedores podem trabalhar em endpoints separados
-4. **Flexibilidade**: Misture arquivos simples com estruturas complexas
-5. **Escalabilidade**: Adicione novos endpoints simplesmente criando novos arquivos
-
-### Documentação Swagger
-1. **Teste Interativo**: Teste todos os endpoints diretamente no navegador
-2. **Documentação Visual**: Interface moderna e intuitiva
-3. **Validação Automática**: Schemas gerados automaticamente
-4. **Exemplos Reais**: Baseados nos seus dados JSON reais
-5. **Padrão OpenAPI**: Compatível com ferramentas padrão da indústria
-
-## 📋 Endpoints e Documentação
-
-O servidor criará automaticamente:
-
-1. **Endpoints de API**: Baseados nos métodos definidos nos arquivos JSON
-2. **Documentação Swagger**: Interface automática em `/`
-3. **Especificação OpenAPI**: JSON disponível em `/swagger.json`
-
-### Parâmetros Dinâmicos
-
-Você pode criar rotas com parâmetros dinâmicos usando a sintaxe `:parametro`. Estes são automaticamente detectados e documentados no Swagger:
-
-```json
-{
-  "endpoints": {
-    "users/:id": {
-      "GET": {
-        "body": { "id": 1, "name": "João", "email": "joao@email.com" }
-      }
-    },
-    "users/:userId/posts/:postId": {
-      "GET": {
-        "body": { "id": 1, "userId": 1, "title": "Post", "content": "Conteúdo" }
-      }
-    }
-  }
-}
-```
-
-No Swagger, você verá:
-- `users/{id}` com parâmetro `id` (integer, obrigatório)
-- `users/{userId}/posts/{postId}` com parâmetros `userId` e `postId` (integer, obrigatório)
-
-### 🔧 Headers Mockados
-
-**NOVO!** Agora você pode definir headers personalizados que serão enviados como cabeçalhos de resposta em seus endpoints. Esta funcionalidade é útil para simular APIs reais que retornam headers específicos.
-
-```json
-{
-  "endpoints": {
-    "users": {
-      "GET": {
-        "body": [
-          { "id": 1, "name": "João Silva", "email": "joao@email.com" },
-          { "id": 2, "name": "Maria Santos", "email": "maria@email.com" }
-        ],
-        "headers": {
-          "X-Total-Count": "2",
-          "X-API-Version": "1.0",
-          "Cache-Control": "max-age=3600",
-          "X-Custom-Header": "valor-personalizado"
-        }
-      },
-      "POST": {
-        "body": { "id": 3, "name": "Novo Usuário", "email": "novo@email.com" },
-        "headers": {
-          "X-Created-At": "2024-01-15T10:30:00Z",
-          "Location": "/users/3",
-          "X-Rate-Limit": "100"
-        }
-      }
-    },
-    "products/:id": {
-      "GET": {
-        "body": { "id": 1, "name": "Produto", "price": 99.99 },
-        "headers": {
-          "X-Product-Version": "2.1",
-          "ETag": "\"abc123\"",
-          "Last-Modified": "Wed, 15 Jan 2024 10:30:00 GMT"
-        }
-      }
-    }
-  }
-}
-```
-
-#### Características dos Headers Mockados:
-
-- **Flexibilidade Total**: Defina qualquer header HTTP personalizado
-- **Documentação Automática**: Headers aparecem automaticamente na documentação Swagger
-- **Simulação Realista**: Simule headers comuns como `X-Total-Count`, `Location`, `ETag`, etc.
-- **Por Método**: Cada método HTTP pode ter seus próprios headers específicos
-- **Opcional**: Headers são opcionais - endpoints funcionam normalmente sem eles
-
-#### Exemplos de Headers Úteis:
-
-- **Paginação**: `X-Total-Count`, `X-Page`, `X-Per-Page`
-- **Versionamento**: `X-API-Version`, `X-Product-Version`
-- **Cache**: `Cache-Control`, `ETag`, `Last-Modified`
-- **Rate Limiting**: `X-Rate-Limit`, `X-Rate-Remaining`
-- **Localização**: `Location` (para recursos criados)
-- **Timestamps**: `X-Created-At`, `X-Updated-At`
-- **Ambiente**: `X-Environment`, `X-Test-Mode`
-
-Métodos HTTP suportados:
-- GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, ALL
-
-### 🍪 Cookies Mockados
-
-**NOVO!** Agora você pode definir cookies personalizados que serão enviados como cookies de resposta em seus endpoints. Esta funcionalidade é perfeita para simular autenticação, preferências do usuário, sessões e muito mais.
-
-```json
-{
-  "endpoints": {
-    "auth/login": {
-      "POST": {
-        "body": {
-          "message": "Login realizado com sucesso",
-          "user": { "id": 1, "name": "João Silva" }
-        },
-        "headers": {
-          "X-Auth-Status": "success"
-        },
-        "cookies": {
-          "session_id": {
-            "value": "sess_abc123def456",
-            "options": {
-              "httpOnly": true,
-              "secure": true,
-              "sameSite": "strict",
-              "maxAge": 3600000,
-              "path": "/"
-            }
-          },
-          "auth_token": {
-            "value": "jwt_token_here",
-            "options": {
-              "httpOnly": true,
-              "secure": true,
-              "maxAge": 86400000
-            }
-          },
-          "user_id": "1",
-          "last_login": "2024-01-15T10:30:00Z"
-        }
-      }
-    },
-    "preferences": {
-      "GET": {
-        "body": {
-          "theme": "dark",
-          "language": "pt-BR"
-        },
-        "cookies": {
-          "theme": "dark",
-          "language": "pt-BR",
-          "preferences_version": {
-            "value": "1.2",
-            "options": {
-              "maxAge": 31536000000,
-              "sameSite": "lax"
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-#### Características dos Cookies Mockados:
-
-- **Cookies Simples**: Defina apenas o valor como string
-- **Cookies Avançados**: Use objeto com `value` e `options` para controle total
-- **Opções Completas**: Suporte a todas as opções do Express.js (`httpOnly`, `secure`, `sameSite`, `maxAge`, `path`, `domain`)
-- **Documentação Automática**: Cookies aparecem automaticamente na documentação Swagger
-- **Simulação Realista**: Perfeito para testar autenticação, sessões, preferências, etc.
-- **Por Método**: Cada método HTTP pode ter seus próprios cookies específicos
-- **Opcional**: Cookies são opcionais - endpoints funcionam normalmente sem eles
-
-#### Formatos Suportados:
-
-**1. Cookie Simples (apenas valor):**
-```json
-"cookies": {
-  "simple_cookie": "valor_do_cookie"
-}
-```
-
-**2. Cookie com Opções:**
-```json
-"cookies": {
-  "advanced_cookie": {
-    "value": "valor_do_cookie",
-    "options": {
-      "httpOnly": true,
-      "secure": true,
-      "sameSite": "strict",
-      "maxAge": 3600000,
-      "path": "/",
-      "domain": ".exemplo.com"
-    }
-  }
-}
-```
-
-#### Opções de Cookie Disponíveis:
-
-- **`httpOnly`**: Torna o cookie acessível apenas via HTTP (não JavaScript)
-- **`secure`**: Cookie só é enviado via HTTPS
-- **`sameSite`**: Controla quando o cookie é enviado (`strict`, `lax`, `none`)
-- **`maxAge`**: Duração do cookie em milissegundos
-- **`path`**: Caminho onde o cookie é válido
-- **`domain`**: Domínio onde o cookie é válido
-- **`expires`**: Data de expiração específica
-
-#### Exemplos de Uso Prático:
-
-- **Autenticação**: `session_id`, `auth_token`, `refresh_token`
-- **Preferências**: `theme`, `language`, `timezone`
-- **Carrinho de Compras**: `cart_id`, `items_count`, `currency`
-- **Analytics**: `visitor_id`, `utm_source`, `session_start`
-- **Consentimento**: `cookie_consent`, `marketing_consent`, `analytics_consent`
-- **Configurações**: `layout_mode`, `notifications_enabled`
-
-Métodos HTTP suportados:
-- GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD, ALL
-
-## 📊 Estrutura do JSON
-
-### Modo Arquivo
-
-O arquivo JSON deve seguir a seguinte estrutura:
-
-```json
-{
-  "endpoints": {
-    "nome-do-endpoint": {
-      "METODO_HTTP": {
-        "body": {
-          // Seus dados aqui
-        },
-        "headers": {
-          // Headers de resposta opcionais
-          "X-Custom-Header": "valor",
-          "Cache-Control": "max-age=3600"
-        },
-        "cookies": {
-          // Cookies de resposta opcionais
-          "simple_cookie": "valor",
-          "advanced_cookie": {
-            "value": "valor_com_opcoes",
-            "options": {
-              "httpOnly": true,
-              "maxAge": 3600000
-            }
-          }
-        }
-      }
-    },
-    "nome-do-endpoint/:parametro": {
-      "METODO_HTTP": {
-        "body": {
-          // Dados para endpoints com parâmetros
-        },
-        "headers": {
-          // Headers específicos para este endpoint
-          "X-Param-Type": "dynamic"
-        },
-        "cookies": {
-          // Cookies específicos para este endpoint
-          "param_cookie": "dynamic_value"
-        }
-      }
-    }
-  }
-}
-```
-
-### Modo Pasta
-
-No modo pasta, cada arquivo pode ser:
-
-1. **JSON Simples** (cria endpoint GET automaticamente):
-```json
-[
-  { "id": 1, "body": "exemplo" }
-]
-```
-*Headers não são suportados em arquivos JSON simples - use a estrutura completa se precisar de headers*
-*Cookies não são suportados em arquivos JSON simples - use a estrutura completa se precisar de cookies*
-
-2. **JSON com estrutura de endpoints** (controle total):
-```json
-{
-  "endpoints": {
-    "endpoint-name": {
-      "GET": { 
-        "body": [...],
-        "headers": {
-          "X-Method": "GET",
-          "Cache-Control": "public, max-age=300"
-        },
-        "cookies": {
-          "viewed_endpoint": "endpoint-name",
-          "visit_count": {
-            "value": "1",
-            "options": {
-              "maxAge": 86400000
-            }
-          }
-        }
-      },
-      "POST": { 
-        "body": {...},
-        "headers": {
-          "X-Method": "POST",
-          "Location": "/endpoint-name/1"
-        },
-        "cookies": {
-          "last_action": "create",
-          "csrf_token": {
-            "value": "abc123",
-            "options": {
-              "httpOnly": true,
-              "sameSite": "strict"
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
-## 🎯 Interface Swagger
-
-Ao acessar a raiz do servidor (`http://localhost:3000/`), você encontrará:
-
-- **Lista de Endpoints**: Todos os endpoints organizados por grupos
-- **Métodos HTTP**: Cada método com sua documentação específica
-- **Parâmetros**: Parâmetros de path automaticamente detectados
-- **Schemas**: Estruturas de dados com exemplos reais
-- **Try it out**: Botões para testar cada endpoint diretamente
-- **Request/Response**: Exemplos de requisição e resposta
-
-## Licença
-
-MIT 
+**[📖 Read the Full Documentation](https://jsont-to-mock-api.fdoma.in/)** | **[🐛 Report Issues](https://github.com/rubensflinco/json-to-mock-api/issues)** | **[💬 Discussions](https://github.com/rubensflinco/json-to-mock-api/discussions)** 
