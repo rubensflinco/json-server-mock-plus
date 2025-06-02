@@ -65,7 +65,7 @@ export default function HomepageFeatures(): JSX.Element {
           </div>
           <div className="row">
             <div className="col col--6">
-              <h4>1. Crie um arquivo JSON:</h4>
+              <h4>1. Crie um arquivo chamado <code>db.json</code>:</h4>
               <div className="code-block">
                 <pre>
                   <code>
