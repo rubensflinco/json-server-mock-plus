@@ -2,7 +2,6 @@ import React from 'react';
 import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
-import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
@@ -52,11 +51,11 @@ function Feature({ title, description }: FeatureItem) {
 
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className={styles.features}>
+    <section className="homepage-features">
       <div className="container">
 
         {/* Seção de exemplo de código */}
-        <div className={styles.codeExample}>
+        <div className="code-example">
           <div className="row">
             <div className="col col--12">
               <Heading as="h2" className="text--center margin-bottom--lg">
@@ -67,7 +66,7 @@ export default function HomepageFeatures(): JSX.Element {
           <div className="row">
             <div className="col col--6">
               <h4>1. Crie um arquivo JSON:</h4>
-              <div className={styles.codeBlock}>
+              <div className="code-block">
                 <pre>
                   <code>
                     {`
@@ -96,7 +95,7 @@ export default function HomepageFeatures(): JSX.Element {
             </div>
             <div className="col col--6">
               <h4>2. Execute o comando:</h4>
-              <div className={styles.codeBlock}>
+              <div className="code-block">
                 <pre>
                   <code>npx --yes json-to-mock-api -f db.json</code>
                 </pre>
@@ -106,7 +105,7 @@ export default function HomepageFeatures(): JSX.Element {
                 <li><strong>Swagger UI:</strong> <code>http://localhost:3000/</code></li>
                 <li><strong>API:</strong> <code>http://localhost:3000/users</code></li>
               </ul>
-              <div className={styles.resultBox}>
+              <div className="result-box">
                 <strong>✨ Resultado:</strong> API completa com documentação interativa,
                 headers customizados e cookies funcionando!
               </div>

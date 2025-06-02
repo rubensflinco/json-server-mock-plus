@@ -28,3 +28,808 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/**
+ * Tema moderno inspirado na Vercel - Json-To-Mock-Api
+ * Cores escuras, gradientes e tipografia elegante
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* === VARIÁVEIS GLOBAIS INSPIRADAS NA VERCEL === */
+:root {
+  /* Cores primárias baseadas na Vercel */
+  --ifm-color-primary: #0070f3;
+  --ifm-color-primary-dark: #0066d9;
+  --ifm-color-primary-darker: #005cc5;
+  --ifm-color-primary-darkest: #004a9f;
+  --ifm-color-primary-light: #3291ff;
+  --ifm-color-primary-lighter: #66a9ff;
+  --ifm-color-primary-lightest: #99c2ff;
+
+  /* Cores de fundo escuras */
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #111111;
+  
+  /* Cores de texto melhoradas para visibilidade */
+  --ifm-font-color-base: #ffffff;
+  --ifm-font-color-secondary: #e0e0e0; /* Mais claro para melhor visibilidade */
+  --ifm-font-color-tertiary: #b0b0b0; /* Novo nível para textos secundários */
+  
+  /* Fonte personalizada */
+  --ifm-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  
+  /* Códigos */
+  --ifm-code-font-size: 14px;
+  --ifm-code-background: #1a1a1a;
+  --docusaurus-highlighted-code-line-bg: rgba(70, 130, 243, 0.1);
+  
+  /* Borders */
+  --ifm-global-border-width: 1px;
+  --ifm-border-color: #333333;
+  
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(0, 0, 0, 0.8);
+  --ifm-navbar-height: 60px;
+  
+  /* Sidebar */
+  --ifm-sidebar-background-color: #0a0a0a;
+  
+  /* Cards e containers */
+  --ifm-card-background-color: #111111;
+}
+
+/* === FORÇA TEMA ESCURO GLOBAL === */
+[data-theme='light'],
+[data-theme='dark'],
+html {
+  --ifm-color-primary: #0070f3;
+  --ifm-color-primary-dark: #0066d9;
+  --ifm-color-primary-darker: #005cc5;
+  --ifm-color-primary-darkest: #004a9f;
+  --ifm-color-primary-light: #3291ff;
+  --ifm-color-primary-lighter: #66a9ff;
+  --ifm-color-primary-lightest: #99c2ff;
+
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #111111;
+  --ifm-font-color-base: #ffffff;
+  --ifm-font-color-secondary: #e0e0e0;
+  --ifm-font-color-tertiary: #b0b0b0;
+  --ifm-code-background: #1a1a1a;
+  --ifm-border-color: #333333;
+  --ifm-navbar-background-color: rgba(0, 0, 0, 0.9);
+  --ifm-sidebar-background-color: #0a0a0a;
+  --ifm-card-background-color: #111111;
+  --docusaurus-highlighted-code-line-bg: rgba(70, 130, 243, 0.1);
+}
+
+/* === TIPOGRAFIA MODERNA === */
+html {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-variation-settings: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === NAVBAR ESTILO VERCEL === */
+.navbar {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #333333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  padding: 0 1rem;
+}
+
+.navbar__title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #0070f3 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.navbar__item {
+  font-weight: 500;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.navbar__item:hover {
+  color: #0070f3;
+}
+
+/* === SIDEBAR MODERNO === */
+.menu {
+  background-color: #0a0a0a;
+  border-right: 1px solid #333333;
+}
+
+.menu__link {
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  margin: 2px 0;
+}
+
+.menu__link:hover {
+  background: rgba(70, 130, 243, 0.1);
+  color: #0070f3;
+}
+
+.menu__link--active {
+  background: linear-gradient(135deg, rgba(70, 130, 243, 0.15) 0%, rgba(0, 212, 255, 0.15) 100%);
+  color: #0070f3;
+  border-left: 3px solid #0070f3;
+}
+
+/* === CONTEÚDO PRINCIPAL === */
+.main-wrapper {
+  background: #000000;
+}
+
+/* === HERO SECTION COM GRADIENTE === */
+.hero {
+  background: linear-gradient(135deg, #000000 0%, #111111 50%, #1a1a1a 100%);
+  padding: 4rem 0;
+  border-bottom: 1px solid #333333;
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #0070f3 50%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.hero__subtitle {
+  font-size: 1.3rem;
+  color: #e0e0e0; /* Cor mais clara para melhor visibilidade */
+  font-weight: 400;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Sombra sutil para contraste */
+}
+
+/* === PÁGINA INDEX - CONVERTIDO DE CSS MODULES === */
+
+/* Hero Banner */
+.hero-banner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 996px) {
+  .hero-banner {
+    padding: 2rem;
+  }
+}
+
+/* Botões da homepage */
+.homepage-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Quick Start */
+.quick-start {
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Code Block da homepage */
+.homepage-code-block {
+  background: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-code-block code {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+@media screen and (max-width: 768px) {
+  .homepage-buttons {
+    flex-direction: column;
+  }
+  
+  .homepage-code-block code {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .homepage-code-block {
+    padding: 10px 16px;
+  }
+}
+
+/* === BOTÕES ESTILO VERCEL === */
+.button {
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  text-transform: none;
+  border: 1px solid transparent;
+}
+
+.button--primary {
+  background: linear-gradient(135deg, #0070f3 0%, #0066d9 100%);
+  color: white;
+  border: none;
+}
+
+.button--primary:hover {
+  background: linear-gradient(135deg, #0066d9 0%, #005cc5 100%);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 112, 243, 0.3);
+}
+
+.button--secondary {
+  background: rgba(0, 113, 243, 0.3);
+  color: #ffffff!important;
+  border: 1px solid #333333;
+}
+
+.button--secondary:hover {
+  background: #111111;
+  border-color: #0070f3;
+  color: #0070f3;
+}
+
+/* === CARDS MODERNOS === */
+.card {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  border-color: rgba(70, 130, 243, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(70, 130, 243, 0.1);
+}
+
+.card__header {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+  border-bottom: 1px solid #333333;
+}
+
+.card__footer {
+  background: #0a0a0a;
+  border-top: 1px solid #333333;
+}
+
+/* === CÓDIGO E PRÉ === */
+code {
+  background: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+
+pre {
+  background: #0a0a0a;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+}
+
+/* === ADMONITIONS MODERNOS === */
+.admonition {
+  border-radius: 6px;
+  border-left: 4px solid;
+  background: #111111;
+  border-color: #333333;
+}
+
+.admonition-icon {
+  color: #0070f3;
+}
+
+.admonition-heading {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* === TABELAS === */
+table {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th {
+  background: #1a1a1a;
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 1px solid #333333;
+}
+
+td {
+  border-bottom: 1px solid #333333;
+  color: #ffffff;
+}
+
+tr:hover {
+  background: rgba(70, 130, 243, 0.05);
+}
+
+/* === LINKS === */
+a {
+  color: #0070f3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #3291ff;
+  text-decoration: underline;
+}
+
+/* === FOOTER === */
+.footer {
+  background: #0a0a0a;
+  border-top: 1px solid #333333;
+}
+
+.footer__title {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.footer__item {
+  color: #b0b0b0; /* Cor mais visível para itens do footer */
+}
+
+.footer__item:hover {
+  color: #0070f3;
+}
+
+/* === TEXTOS DA PÁGINA INICIAL === */
+.hero .container h1 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero .container p {
+  color: #e0e0e0 !important;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* === MELHORIAS DE VISIBILIDADE GERAL === */
+p {
+  color: #e0e0e0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+/* Textos secundários mais visíveis */
+.text--secondary {
+  color: #b0b0b0 !important;
+}
+
+/* === HOMEPAGE FEATURES - CONVERTIDO DE CSS MODULES === */
+
+/* Seção principal das features */
+.homepage-features {
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+  width: 100%;
+  background: linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%);
+  position: relative;
+}
+
+.homepage-features::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 112, 243, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.feature-svg {
+  height: 200px;
+  width: 200px;
+}
+
+/* Seção de exemplo de código */
+.code-example {
+  margin-bottom: 6rem;
+  padding: 3rem;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid #333333;
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.code-example::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0070f3, transparent);
+}
+
+/* Blocos de código */
+.code-block {
+  background: #0a0a0a;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.code-block:hover {
+  border-color: rgba(0, 112, 243, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 112, 243, 0.1);
+  transform: translateY(-2px);
+}
+
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0070f3, #00d4ff, #0070f3);
+  border-radius: 12px 12px 0 0;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+}
+
+.code-block code {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ffffff;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+}
+
+/* Caixa de resultado */
+.result-box {
+  background: linear-gradient(135deg, rgba(0, 112, 243, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
+  border: 1px solid rgba(0, 112, 243, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0070f3, #00d4ff);
+}
+
+.result-box strong {
+  color: #0070f3;
+  font-weight: 600;
+}
+
+/* Títulos das seções */
+.code-example h2 {
+  background: linear-gradient(135deg, #ffffff 0%, #0070f3 50%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.code-example h4 {
+  color: #f0f0f0; /* Cor mais clara para subtítulos */
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.code-example h4::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #0070f3, #00d4ff);
+  border-radius: 2px;
+}
+
+/* Listas */
+.code-example ul {
+  list-style: none;
+  padding: 0;
+}
+
+.code-example li {
+  color: #f0f0f0; /* Cor mais clara para melhor visibilidade */
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.code-example li:last-child {
+  border-bottom: none;
+}
+
+.code-example li strong {
+  color: #0070f3;
+  font-weight: 600;
+}
+
+.code-example li code {
+  background: rgba(26, 26, 26, 0.8);
+  color: #00d4ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 13px;
+  border: 1px solid #333333;
+}
+
+/* Cards de features com melhor visibilidade */
+.homepage-features .col h3 {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Sombra para contraste */
+}
+
+.homepage-features .col p {
+  color: #e0e0e0; /* Cor mais clara para melhor legibilidade */
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Melhoria geral dos textos */
+.homepage-features * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animações */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.code-example {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.code-block {
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* === SCROLLBAR PERSONALIZADA === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0070f3;
+}
+
+/* === ANIMAÇÕES SUAVES === */
+* {
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+/* === TOC SIDEBAR === */
+.table-of-contents {
+  border-left: 1px solid #333333;
+}
+
+.table-of-contents__link {
+  color: #b0b0b0; /* Mais visível */
+  font-size: 13px;
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: #0070f3;
+}
+
+/* === SEARCH BAR === */
+.DocSearch-Button {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 6px;
+}
+
+.DocSearch-Button:hover {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 1px #0070f3;
+}
+
+/* === BREADCRUMBS === */
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: #0070f3;
+}
+
+/* === PAGINATION === */
+.pagination-nav__link {
+  background: #111111;
+  border: 1px solid #333333;
+  border-radius: 6px;
+}
+
+.pagination-nav__link:hover {
+  border-color: #0070f3;
+  background: rgba(70, 130, 243, 0.05);
+}
+
+/* === RESPONSIVIDADE HOMEPAGE === */
+@media screen and (max-width: 996px) {
+  .code-example {
+    padding: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .code-example .row {
+    flex-direction: column;
+  }
+  
+  .code-example h2 {
+    font-size: 2rem;
+  }
+  
+  .code-example h4 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .code-block {
+    padding: 1rem;
+  }
+  
+  .code-block code {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  
+  .result-box {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .homepage-features .col h3 {
+    font-size: 1.2rem;
+  }
+  
+  .homepage-features .col p {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homepage-features {
+    padding: 2rem 0;
+  }
+  
+  .code-example {
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .code-example h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .code-example h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .homepage-features .col h3 {
+    font-size: 1.1rem;
+  }
+  
+  .homepage-features .col p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .hero__subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .navbar__title {
+    font-size: 1rem;
+  }
+}

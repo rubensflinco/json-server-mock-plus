@@ -58,7 +58,7 @@ const config: Config = {
     // Replace with your project's social card
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: false,
+      disableSwitch: true, // Force dark mode sempre
       respectPrefersColorScheme: false,
     },
     navbar: {
@@ -67,6 +67,7 @@ const config: Config = {
         alt: 'Json-To-Mock-Api Logo',
         src: 'android-chrome-512x512.png',
       },
+      style: 'dark', // Força navbar escura
       items: [
         {
           type: 'docSidebar',
@@ -136,9 +137,9 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} Json-To-Mock-Api. Construído com Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
-      additionalLanguages: ['bash', 'json'],
+      theme: prismThemes.vsDark, // Tema escuro mais moderno
+      darkTheme: prismThemes.vsDark,
+      additionalLanguages: ['bash', 'json', 'typescript', 'javascript'],
     },
   } satisfies Preset.ThemeConfig,
 };
