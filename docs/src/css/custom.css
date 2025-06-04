@@ -114,6 +114,10 @@ html {
 }
 
 /* === NAVBAR ESTILO VERCEL === */
+.navbar-sidebar {
+  height: 100vh;
+}
+
 .navbar {
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(12px);
