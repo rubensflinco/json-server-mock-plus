@@ -142,6 +142,14 @@ const config: Config = {
       additionalLanguages: ['bash', 'json', 'typescript', 'javascript'],
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [
+    [
+      '@docusaurus/plugin-google-tag-manager',
+      {
+        containerId: 'GTM-M2GL63Z9',
+      },
+    ],
+  ],
 };
 
 export default config;
